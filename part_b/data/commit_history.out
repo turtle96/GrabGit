@@ -1,0 +1,42 @@
+NEW_ENTRY
+andrewshir 
+andrewshirokoff@gmail.com 
+9/6/2014, 06 Sep 2014 6:23:27 PM 
+commitMsgStart
+Fix bug for ".local" host name
+
+It's necessary to put new list member in squared brackets (i.e. create new list) to merge lists properly, otherwise we will get result list with character elements instead of string element.
+commitMsgEnd
+1	1	scrapy/http/cookies.py
+
+NEW_ENTRY
+andrewshir 
+andrewshirokoff@gmail.com 
+9/14/2014, 14 Sep 2014 2:24:16 PM 
+commitMsgStart
+Test for local domains (without dots) added
+commitMsgEnd
+6	0	tests/test_downloadermiddleware_cookies.py
+NEW_ENTRY
+Andrew Scorpil 
+webdev@scorpil.com 
+8/15/2015, 15 Aug 2015 12:16:39 AM 
+commitMsgStart
+[LinkExtractors] Ignore bogus links
+
+(rebased the code for scrapy 1.0 and made a few code improvements --nyov)
+
+commitMsgEnd
+4	1	scrapy/linkextractors/htmlparser.py
+8	4	scrapy/linkextractors/lxmlhtml.py
+12	3	scrapy/linkextractors/regex.py
+4	1	scrapy/linkextractors/sgml.py
+52	0	tests/test_linkextractors.py
+NEW_ENTRY
+Andrew Murray 
+radarhere@gmail.com 
+7/16/2015, 16 Jul 2015 11:59:02 PM 
+commitMsgStart
+Fixed typos
+commitMsgEnd
+2	2	docs/news.rst
