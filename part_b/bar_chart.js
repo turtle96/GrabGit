@@ -4,7 +4,8 @@ var height = 600;
 var width = 900;
 var margin = 80;
 
-var color = d3.scale.ordinal().range(["#00BFA5", "#FF5252"]);
+var colorPositive = d3.scale.ordinal().range(["#00BFA5", "#00E5FF", "#8BC34A", "#CDDC39"]);
+var colorNegative = d3.scale.ordinal().range(["#FF5252"]);
 
 var svg = d3.select("#display")
 		.append("svg")
@@ -71,6 +72,7 @@ d3.json("data/data.json", function(error, data) {
 
 		dataSet[monthKey][currentName].added = added;
 		dataSet[monthKey][currentName].deleted = deleted;
+		dataSet[monthKey][currentName].date = monthKey;
 		added = 0;
 		deleted = 0;
 	});
@@ -81,7 +83,7 @@ d3.json("data/data.json", function(error, data) {
 	minDate.subtract(1, "months");
 	minDate.startOf('day');   
 	maxDate.add(1, "months");
-	maxDate.startOf('day');   ;	//fix double tick glitch
+	maxDate.startOf('day');
 	console.log(minDate.toString() + ", " + maxDate.toString());
 
  	var x0 = d3.time.scale()
@@ -90,8 +92,18 @@ d3.json("data/data.json", function(error, data) {
  
 	var x1 = d3.scale.ordinal();
 
-  	//x1.domain(keys).rangeRoundBands([0, x0.rangeBand()]);
-  	x1.domain(keys).rangeRoundBands([0, 20]);	
+  	var interval = 0;
+  	var startDate = moment(minDate);
+  	var endDate = moment(maxDate);
+
+  	while (startDate.isBefore(endDate, "month")) {
+  		interval += 1;
+  		startDate.add(1, "months");
+  	}
+
+  	console.log(interval);
+
+  	x1.domain(keys).rangeRoundBands([0, ((width-margin*2)/interval)/2]);	
 
   	var y = d3.scale.linear()
 		.rangeRound([height-margin, margin]);
@@ -115,18 +127,15 @@ d3.json("data/data.json", function(error, data) {
     .scale(y)
     .orient("left");
 
-    console.log(dataSet);
-
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
     	.enter()
     	.append("g")
-    		.attr("transform", function(d) {/*console.log(d.date);*/ return "translate(" + x0(d.date) + ",0)"; })
+    		.attr("transform", function(d) {return "translate(" + x0(d.date) + ",0)"; })
     	.selectAll(".rect")
-    	.data(function(d) { return keys.map(function(key) { 
-    		console.log(d); 
+    	.data(function(d) { return keys.map(function(key) {  
     		if (d[key]) {
-    			return {key: key, value: d[key].added, date: d[key].date};
+    			return {key: key, value: d[key].added, date: d[key].date.toString()};
     		} 
 
     		return {key: key, value: 0};
@@ -136,7 +145,7 @@ d3.json("data/data.json", function(error, data) {
 	        .attr("y", function(d) { /*console.log(d);*/ return y(d.value); })
 	        .attr("width", x1.rangeBand())
 	        .attr("height", function(d) { return height - y(d.value) - y(yRange); })
-	        .attr("fill", function(d,i) { return color(i) });
+	        .attr("fill", function(d,i) { return colorPositive(i) });
 
 	
 				
