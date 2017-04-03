@@ -102,8 +102,8 @@ d3.json("data/data.json", function(error, data) {
   	}
 
   	console.log(interval);
-
-  	x1.domain(keys).rangeRoundBands([0, ((width-margin*2)/interval)/2]);	
+  	var bandwidth = (width-margin*2)/interval/2;
+  	x1.domain(keys).rangeRoundBands([0, bandwidth]);	
 
   	var y = d3.scale.linear()
 		.rangeRound([height-margin, margin]);
@@ -127,6 +127,8 @@ d3.json("data/data.json", function(error, data) {
     .scale(y)
     .orient("left");
 
+    colorPositive.domain(keys);
+
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
     	.enter()
@@ -141,13 +143,11 @@ d3.json("data/data.json", function(error, data) {
     		return {key: key, value: 0};
     	}); })
 	    	.enter().append("rect")
-	    	.attr("x", function(d) { return x1(d.key) - 10; })
+	    	.attr("x", function(d) { return x1(d.key) - bandwidth/2; })
 	        .attr("y", function(d) { /*console.log(d);*/ return y(d.value); })
 	        .attr("width", x1.rangeBand())
 	        .attr("height", function(d) { return height - y(d.value) - y(yRange); })
-	        .attr("fill", function(d,i) { return colorPositive(i) });
-
-	
+	        .attr("fill", function(d,i) { return colorPositive(d.key) });
 				
 	path.on("mouseover", function(d) { 
 		d3.select(this).style("opacity", 0.6)
