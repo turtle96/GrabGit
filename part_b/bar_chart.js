@@ -1,36 +1,3 @@
-function barStack(seriesData) {
-	console.log(seriesData);
-	var l = seriesData.length
-	while (l--) {
-		var posBase = 0; // positive base
-		var negBase = 0; // negative base
-
-		seriesData.forEach(function(d) {
-			d = d[l]
-			d.size = Math.abs(d.y)
-			d.date = d.date;
-			d.data = d.data;
-			console.log(d);
-			if (d.y < 0) {
-				d.y0 = negBase
-				negBase -= d.size
-			} else
-			{
-				d.y0 = posBase = posBase + d.size
-			}
-		})
-	}
-	seriesData.extent = d3.extent(
-		d3.merge(
-			d3.merge(
-				seriesData.map(function(e) { 
-					return e.map(function(f) { return [f.y0,f.y0-f.size] }) 
-				})
-			)
-		)
-	)
-}
-
 var data;
 
 var height = 600;
@@ -46,7 +13,7 @@ var svg = d3.select("#display")
 
 d3.json("data/data.json", function(error, data) {
 	var dataSet = {};
-	var currentDate, currentMonth, currentName, monthKey;
+	var currentDate, currentMonth = null, currentName, monthKey;
 	var keys = [];
 	var added = 0, deleted = 0;
 
@@ -60,33 +27,34 @@ d3.json("data/data.json", function(error, data) {
 
 		author.forEach(function(d){
 			//console.log(d);
-
-			if (currentMonth != undefined && currentMonth.isSame(currentDate, "month")) {
-				added += +d.add;
-				deleted += +d.delete;
-			}
-			else if (currentMonth != undefined) {
-				console.log("HERE");
-				dataSet[monthKey][currentName]["added"] = added;
-				dataSet[monthKey][currentName]["deleted"] = deleted;
-			}
-
 			currentDate = moment(d.date, "MM/DD/YYYY");
 			currentName = d.name;
 
-			currentMonth = moment().year(currentDate.year()).month(currentDate.month()).date(1);
+			if (currentMonth != null && currentMonth.isSame(currentDate, "month")) {
+				added += +d.add;
+				deleted += +d.delete;
+			}
+			
+			if (currentMonth != null && dataSet[monthKey][currentName]) {
+				dataSet[monthKey][currentName].added = added;
+				dataSet[monthKey][currentName].deleted = deleted;
+				dataSet[monthKey][currentName].date = monthKey;
+			}
+
+			currentMonth = currentDate;
+			currentMonth.date(1);
 			currentMonth.startOf('day');
-			monthKey = currentMonth.month() + "/" + currentMonth.year();
+			monthKey = moment(currentMonth);
 
 			if (minDate==null || currentMonth.isBefore(minDate)) {
-				minDate = currentMonth;
+				minDate = moment(currentMonth);
 			}
 			if (maxDate==null || currentMonth.isAfter(maxDate)) {
-				maxDate = currentMonth;
+				maxDate = moment(currentMonth);
 			}
 
 			if (!(dataSet[monthKey])) {
-				dataSet[monthKey] = {date: currentMonth};
+				dataSet[monthKey] = {date: monthKey};
 				dataSet[monthKey][currentName] = {name: currentName, list: []};
 				added = +d.add;
 				deleted = +d.delete;
@@ -101,8 +69,8 @@ d3.json("data/data.json", function(error, data) {
 			
 		});
 
-		dataSet[monthKey][currentName]["added"] = added;
-		dataSet[monthKey][currentName]["deleted"] = deleted;
+		dataSet[monthKey][currentName].added = added;
+		dataSet[monthKey][currentName].deleted = deleted;
 		added = 0;
 		deleted = 0;
 	});
@@ -123,12 +91,12 @@ d3.json("data/data.json", function(error, data) {
 	var x1 = d3.scale.ordinal();
 
   	//x1.domain(keys).rangeRoundBands([0, x0.rangeBand()]);
-  	x1.domain(keys).rangeRoundBands([0, 10]);	
+  	x1.domain(keys).rangeRoundBands([0, 20]);	
 
   	var y = d3.scale.linear()
 		.rangeRound([height-margin, margin]);
 
-	var yRange = d3.max(d3.values(dataSet), function(d) { console.log(d); return d3.max(keys, function(key) { 
+	var yRange = d3.max(d3.values(dataSet), function(d) { /*console.log(d);*/ return d3.max(keys, function(key) { 
 		if (d[key])
 			return d[key].added; 
 		return 0;
@@ -147,23 +115,25 @@ d3.json("data/data.json", function(error, data) {
     .scale(y)
     .orient("left");
 
+    console.log(dataSet);
+
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
     	.enter()
     	.append("g")
-    		.attr("transform", function(d) { return "translate(" + x0(d.date) + ",0)"; })
+    		.attr("transform", function(d) {/*console.log(d.date);*/ return "translate(" + x0(d.date) + ",0)"; })
     	.selectAll(".rect")
-    	.data(function(d) { console.log(d); return keys.map(function(key) { 
-    		//console.log(d[key]); 
+    	.data(function(d) { return keys.map(function(key) { 
+    		console.log(d); 
     		if (d[key]) {
-    			return {key: key, value: d[key].added};
+    			return {key: key, value: d[key].added, date: d[key].date};
     		} 
 
     		return {key: key, value: 0};
     	}); })
 	    	.enter().append("rect")
-	    	.attr("x", function(d) { return x1(d.key); })
-	        .attr("y", function(d) { console.log(y(d.value)); return y(d.value); })
+	    	.attr("x", function(d) { return x1(d.key) - 10; })
+	        .attr("y", function(d) { /*console.log(d);*/ return y(d.value); })
 	        .attr("width", x1.rangeBand())
 	        .attr("height", function(d) { return height - y(d.value) - y(yRange); })
 	        .attr("fill", function(d,i) { return color(i) });
@@ -179,7 +149,7 @@ d3.json("data/data.json", function(error, data) {
 		// else {
 		// 	value = d.y0 - d.size;
 		// }
-		tooltip.select(".count").html(value + " lines\n" + d.key);
+		tooltip.select(".count").html(value + " lines\n" + d.key + "\n" + d.date);
 		tooltip.style("display", "block"); 
 	});
 
