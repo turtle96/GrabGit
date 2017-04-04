@@ -102,8 +102,8 @@ d3.json("data/data.json", function(error, data) {
   	}
 
   	console.log(interval);
-  	var bandwidth = (width-margin*2)/interval/2;
-  	x1.domain(keys).rangeRoundBands([0, bandwidth]);	
+  	var bandwidth = (width-margin*2)/interval;
+  	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.3);	
 
   	var y = d3.scale.linear()
 		.rangeRound([height-margin, margin]);
@@ -128,6 +128,8 @@ d3.json("data/data.json", function(error, data) {
     .orient("left");
 
     colorPositive.domain(keys);
+
+    console.log(keys.length);
 
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
