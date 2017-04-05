@@ -1,7 +1,7 @@
 var data;
 
 var height = 600;
-var width = 900;
+var width = 1000;
 var margin = 80;
 
 var colorPositive = d3.scale.ordinal().range(["#00BFA5", "#00E5FF", "#8BC34A", "#CDDC39"]);
@@ -33,7 +33,7 @@ d3.json("data/data.json", function(error, data) {
 
 			if (currentMonth != null && currentMonth.isSame(currentDate, "month")) {
 				added += +d.add;
-				deleted += +d.delete;
+				deleted += +d.delete * -1;
 			}
 			
 			if (currentMonth != null && dataSet[monthKey][currentName]) {
@@ -101,7 +101,7 @@ d3.json("data/data.json", function(error, data) {
   		startDate.add(1, "months");
   	}
 
-  	console.log(interval);
+  	console.log("Interval: " + interval);
   	var bandwidth = (width-margin*2)/interval;
   	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.3);	
 
@@ -114,9 +114,15 @@ d3.json("data/data.json", function(error, data) {
 		return 0;
 	}); });
 
-	console.log(yRange);
+	var yMinRange = d3.min(d3.values(dataSet), function(d) { /*console.log(d);*/ return d3.max(keys, function(key) { 
+		if (d[key])
+			return d[key].deleted; 
+		return 0;
+	}); });
 
-	y.domain([0, yRange]);
+	console.log("y axis range: " + yMinRange + ", " + yRange);
+
+	y.domain([yMinRange, yRange]);
 
 	var xAxis = d3.svg.axis()
     .scale(x0)
@@ -129,8 +135,6 @@ d3.json("data/data.json", function(error, data) {
 
     colorPositive.domain(keys);
 
-    console.log(keys.length);
-
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
     	.enter()
@@ -139,7 +143,7 @@ d3.json("data/data.json", function(error, data) {
     	.selectAll(".rect")
     	.data(function(d) { return keys.map(function(key) {  
     		if (d[key]) {
-    			return {key: key, value: d[key].added, date: d[key].date.toString()};
+    			return {key: key, value: d[key].added, date: d[key].date, deleted: d[key].deleted};
     		} 
 
     		return {key: key, value: 0};
@@ -148,19 +152,13 @@ d3.json("data/data.json", function(error, data) {
 	    	.attr("x", function(d) { return x1(d.key) - bandwidth/2; })
 	        .attr("y", function(d) { /*console.log(d);*/ return y(d.value); })
 	        .attr("width", x1.rangeBand())
-	        .attr("height", function(d) { return height - y(d.value) - y(yRange); })
+	        .attr("height", function(d) { return y(0) - y(d.value); })
 	        .attr("fill", function(d,i) { return colorPositive(d.key) });
 				
 	path.on("mouseover", function(d) { 
-		d3.select(this).style("opacity", 0.6)
-		var value = d.value;
-		// if (d.y0 != 0) {
-		// 	value = d.y0;
-		// }
-		// else {
-		// 	value = d.y0 - d.size;
-		// }
-		tooltip.select(".count").html(value + " lines\n" + d.key + "\n" + d.date);
+		d3.select(this).style("opacity", 0.6);
+
+		tooltip.select(".count").html(d.value + " lines<br/>" + d.key + "<br/>" + d.date.format("MMM YYYY").toString());
 		tooltip.style("display", "block"); 
 	});
 
