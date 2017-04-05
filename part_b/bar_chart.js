@@ -58,12 +58,12 @@ d3.json("data/data.json", function(error, data) {
 				dataSet[monthKey] = {date: monthKey};
 				dataSet[monthKey][currentName] = {name: currentName, list: []};
 				added = +d.add;
-				deleted = +d.delete;
+				deleted = +d.delete * -1;
 			}
 			else if (!(dataSet[monthKey][currentName])) {
 				dataSet[monthKey][currentName] = {name: currentName, list: []};
 				added = +d.add;
-				deleted = +d.delete;
+				deleted = +d.delete * -1;
 			}
 
 			dataSet[monthKey][currentName].list.push(d);
