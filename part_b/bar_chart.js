@@ -7,7 +7,7 @@ var margin = 80;
 var colorPositive = d3.scale.ordinal().range(["#00BFA5", "#9CCC65", "#009688", "#CDDC39"]);
 var colorNegative = d3.scale.ordinal().range(["#FF5252", "#673AB7", "#C2185B", "#FF1744"]);
 
-var svg = d3.select("#chartDisplay")
+var svg = d3.select("#display")
 		.append("svg")
 		.attr("height", height)
 		.attr("width", width);
@@ -211,7 +211,7 @@ d3.json("data/data.json", function(error, data) {
 		.call(yAxis);
 });
     
-var tooltip = d3.select("#chartDisplay")
+var tooltip = d3.select("#display")
   .append("div")
   .attr("class", "tooltip"); 
 
