@@ -114,9 +114,10 @@ d3.json("data/data.json", function(error, data) {
 		return 0;
 	}); });
 
-	var yMinRange = d3.min(d3.values(dataSet), function(d) { /*console.log(d);*/ return d3.max(keys, function(key) { 
-		if (d[key])
+	var yMinRange = d3.min(d3.values(dataSet), function(d) { /*console.log(d);*/ return d3.min(keys, function(key) {
+		if (d[key]) {
 			return d[key].deleted; 
+		}
 		return 0;
 	}); });
 
