@@ -4,8 +4,8 @@ var height = 600;
 var width = 1000;
 var margin = 80;
 
-var colorPositive = d3.scale.ordinal().range(["#00BFA5", "#00E5FF", "#8BC34A", "#CDDC39"]);
-var colorNegative = d3.scale.ordinal().range(["#FF5252"]);
+var colorPositive = d3.scale.ordinal().range(["#00BFA5", "#9CCC65", "#009688", "#CDDC39"]);
+var colorNegative = d3.scale.ordinal().range(["#FF5252", "#673AB7", "#C2185B", "#FF1744"]);
 
 var svg = d3.select("#display")
 		.append("svg")
@@ -103,7 +103,7 @@ d3.json("data/data.json", function(error, data) {
 
   	console.log("Interval: " + interval);
   	var bandwidth = (width-margin*2)/interval;
-  	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.3);	
+  	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.1*keys.length);	
 
   	var y = d3.scale.linear()
 		.rangeRound([height-margin, margin]);
@@ -134,6 +134,7 @@ d3.json("data/data.json", function(error, data) {
     .orient("left");
 
     colorPositive.domain(keys);
+    colorNegative.domain(keys);
 
     path = svg.selectAll("g")
     	.data(d3.values(dataSet))
@@ -141,19 +142,45 @@ d3.json("data/data.json", function(error, data) {
     	.append("g")
     		.attr("transform", function(d) {return "translate(" + x0(d.date) + ",0)"; })
     	.selectAll(".rect")
-    	.data(function(d) { return keys.map(function(key) {  
-    		if (d[key]) {
-    			return {key: key, value: d[key].added, date: d[key].date, deleted: d[key].deleted};
-    		} 
-
-    		return {key: key, value: 0};
-    	}); })
+    	.data(function(d) { 
+    		var values = [];
+    		keys.map(function(key) {  
+	    		if (d[key]) {
+	    			values.push({key: key, value: d[key].added, date: d[key].date}); 
+	    			values.push({key: key, value: d[key].deleted, date: d[key].date});
+	    		} 
+    		});
+    		
+    		//console.log(values);
+    		return values; 
+    	})
 	    	.enter().append("rect")
 	    	.attr("x", function(d) { return x1(d.key) - bandwidth/2; })
-	        .attr("y", function(d) { /*console.log(d);*/ return y(d.value); })
+	        .attr("y", function(d) { 
+	        	if (d.value > 0) {
+	        		return y(d.value);
+	        	}
+	        	else {
+	        		return y(0);
+	        	} 
+	        })
 	        .attr("width", x1.rangeBand())
-	        .attr("height", function(d) { return y(0) - y(d.value); })
-	        .attr("fill", function(d,i) { return colorPositive(d.key) });
+	        .attr("height", function(d) { 
+	        	if (d.value > 0) {
+	        		return y(0) - y(d.value);
+	        	}
+	        	else {
+	        		return y(0) - y(d.value * -1);
+	        	}
+	         })
+	        .attr("fill", function(d) { 
+	        	if (d.value > 0) {
+	        		return colorPositive(d.key); 
+	        	}
+	        	else {
+	        		return colorNegative(d.key);
+	        	}
+	        });
 				
 	path.on("mouseover", function(d) { 
 		d3.select(this).style("opacity", 0.6);
