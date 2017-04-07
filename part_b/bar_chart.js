@@ -248,9 +248,16 @@ d3.json("data/data.json", function(error, data) {
 	    commitDisplay.selectAll("p")
 	    	.data(d.list)
 	    	.enter().append("p")
+	    	.attr("align", "left")
 	    	.html(function(d) { 
 	    		var commit = ""; 
-	    		commit += d.name + "<br>" + d.dateAndTime;
+	    		var tabSpacing = "&nbsp;&nbsp;&nbsp;&nbsp;";
+
+	    		commit += "Name: " + d.name + "<br>";
+	    		commit += "Commit Date: " + d.dateAndTime + "<br>";
+	    		commit += "Commit Message:<br>" + tabSpacing + d.message.replace("\n", "<br>&nbsp;&nbsp;&nbsp;") + "<br>";
+	    		commit += "Added " + d.add + " lines<br>";
+	    		commit += "Deleted " + d.delete + " lines<br>";
 	    		return commit; 
 	    	});
 	});
