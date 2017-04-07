@@ -24,7 +24,7 @@ text {
   shape-rendering: crispEdges;
 }
 
-.tooltip {
+.tooltipStyle {
   font-family: "Lucida Console";
   background: #212121;
   box-shadow: 0 0 5px #999999;
@@ -36,6 +36,6 @@ text {
   position: absolute;
   text-align: center;
   top: 95px;
-  width: 80px;
+  width: 100px;
   z-index: 10;
 }
