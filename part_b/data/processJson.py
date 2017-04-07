@@ -22,8 +22,6 @@ while line != "":
 		line = file.readline()
 		token = line.split(", ")
 		jsonData["date"] = token[0]
-		jsonData["month"] = token[0].split("/")[0]
-		jsonData["year"] = token[0].split("/")[2]
 		jsonData["dateAndTime"] = token[1].rstrip()
 		line = file.readline()
 
