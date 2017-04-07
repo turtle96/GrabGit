@@ -242,12 +242,12 @@ d3.json("data/data.json", function(error, data) {
 	path.on("click", function(d) {
 	    console.log(d.list);
 	    var commitDisplay = d3.select("#commitDisplay").select(".jumbotron");
+	    commitDisplay.select("h3").remove();	//remove help header
+	    commitDisplay.selectAll("h4").remove();	//removes previous entries
 
-	    commitDisplay.selectAll("p").remove();	//removes previous entries
-
-	    commitDisplay.selectAll("p")
+	    commitDisplay.selectAll("h4")
 	    	.data(d.list)
-	    	.enter().append("p")
+	    	.enter().append("h4")
 	    	.attr("align", "left")
 	    	.html(function(d) { 
 	    		var commit = ""; 
