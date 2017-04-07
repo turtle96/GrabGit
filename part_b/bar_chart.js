@@ -84,7 +84,7 @@ d3.json("data/data.json", function(error, data) {
 	minDate.startOf('day');   
 	maxDate.add(1, "months");
 	maxDate.startOf('day');
-	console.log(minDate.toString() + ", " + maxDate.toString());
+	//console.log(minDate.toString() + ", " + maxDate.toString());
 
  	var x0 = d3.time.scale()
  		.domain([minDate, maxDate])
@@ -114,7 +114,7 @@ d3.json("data/data.json", function(error, data) {
 		return 0;
 	}); });
 
-	var yMin = d3.min(d3.values(dataSet), function(d) { /*console.log(d);*/ return d3.min(keys, function(key) {
+	var yMin = d3.min(d3.values(dataSet), function(d) { return d3.min(keys, function(key) {
 		if (d[key]) {
 			return d[key].deleted; 
 		}
@@ -147,8 +147,8 @@ d3.json("data/data.json", function(error, data) {
     		var values = [];
     		keys.map(function(key) {  
 	    		if (d[key]) {
-	    			values.push({key: key, value: d[key].added, date: d[key].date}); 
-	    			values.push({key: key, value: d[key].deleted, date: d[key].date});
+	    			values.push({key: key, value: d[key].added, date: d[key].date, list: d[key].list}); 
+	    			values.push({key: key, value: d[key].deleted, date: d[key].date, list: d[key].list});
 	    		} 
     		});
     		
@@ -186,7 +186,7 @@ d3.json("data/data.json", function(error, data) {
 	path.on("mouseover", function(d) { 
 		d3.select(this).style("opacity", 0.6);
 
-		tooltip.select(".count").html(d.value + " lines<br/>" + d.key + "<br/>" + d.date.format("MMM YYYY").toString());
+		tooltip.select(".text").html(d.value + " lines<br>" + d.key + "<br>" + d.date.format("MMM YYYY").toString());
 		tooltip.style("display", "block"); 
 	});
 
@@ -214,37 +214,52 @@ d3.json("data/data.json", function(error, data) {
 	var legend = svg.append("g")
 		.attr("text-anchor", "end")
 	    .selectAll("g")
-	    .data(keys.slice().reverse())
+	    .data(keys)
 	    .enter().append("g")
-
 	      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 	legend.append("rect")
-      .attr("x", width - 40)
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("fill", function(d) { return colorPositive(d); })
-      .style("stroke", "#fff")
-      .style("stroke-width", 2);
+		.attr("x", width - 40)
+		.attr("width", 20)
+		.attr("height", 20)
+		.attr("fill", function(d) { return colorPositive(d); })
+		.style("stroke", "#fff")
+		.style("stroke-width", 2);
 
     legend.append("rect")
-      .attr("x", width - 20)
-      .attr("width", 20)
-      .attr("height", 20)
-      .attr("fill", function(d) { return colorNegative(d); })
-      .style("stroke", "#fff")
-      .style("stroke-width", 2);
+		.attr("x", width - 20)
+		.attr("width", 20)
+		.attr("height", 20)
+		.attr("fill", function(d) { return colorNegative(d); })
+		.style("stroke", "#fff")
+		.style("stroke-width", 2);
 
 	legend.append("text")
-	  .attr("x", width - 50)
-	  .attr("y", 16)
-	  .text(function(d) { console.log(d); return d; });
+		.attr("x", width - 50)
+		.attr("y", 16)
+		.text(function(d) { return d; });
+
+	path.on("click", function(d) {
+	    console.log(d.list);
+	    var commitDisplay = d3.select("#commitDisplay").select(".jumbotron");
+
+	    commitDisplay.selectAll("p").remove();	//removes previous entries
+
+	    commitDisplay.selectAll("p")
+	    	.data(d.list)
+	    	.enter().append("p")
+	    	.html(function(d) { 
+	    		var commit = ""; 
+	    		commit += d.name + "<br>" + d.dateAndTime;
+	    		return commit; 
+	    	});
+	});
 });
     
 var tooltip = d3.select("#chartDisplay")
-  .append("div")
-  .attr("class", "tooltip"); 
+	.append("div")
+	.attr("class", "tooltipStyle"); 
 
-  tooltip.append("div")
-    .attr("class", "count");
+tooltip.append("div")
+	.attr("class", "text");
 
