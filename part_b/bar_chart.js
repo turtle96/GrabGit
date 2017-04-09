@@ -257,10 +257,15 @@ d3.json("data/data.json", function(error, data) {
 	    		var tabSpacing = "&nbsp;&nbsp;&nbsp;&nbsp;";
 
 	    		commit += "Author: " + d.name + "<br>";
+
+	    		if (d.email == "none@none") {
+	    			d.email = "None";
+	    		}
+	    		commit += "Author's Email: " + d.email + "<br>";
 	    		commit += "Commit Date: " + d.dateAndTime + "<br>";
 	    		commit += "Commit Message:<br>" + tabSpacing + d.message.replace("\n", "<br>&nbsp;&nbsp;&nbsp;") + "<br>";
-	    		commit += "Added " + d.add + " lines<br>";
-	    		commit += "Deleted " + d.delete + " lines<br>";
+	    		commit += "<font color=#689F38>Added</font> " + d.add + " lines<br>";
+	    		commit += "<font color=#D32F2F>Deleted</font> " + d.delete + " lines<br>";
 	    		return commit; 
 	    	});
 	});
