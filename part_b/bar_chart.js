@@ -1,6 +1,6 @@
 var data;
 
-var height = 600;
+var height = 500;
 var width = 1000;
 var margin = 50;
 
@@ -242,12 +242,13 @@ d3.json("data/data.json", function(error, data) {
 	path.on("click", function(d) {
 	    console.log(d.list);
 	    var commitDisplay = d3.select("#commitDisplay").select(".jumbotron");
-	    commitDisplay.select("h3").remove();	//remove help header
+	    commitDisplay.select("#helpHeader").remove();	//remove help header
 	    commitDisplay.selectAll("div").remove();	//removes previous entries
 
 	    commitDisplay.selectAll("div")
 	    	.data(d.list)
-	    	.enter().append("div").classed("panel panel-primary panel-custom", true)
+	    	.enter()
+	    	.append("div").classed("panel panel-primary panel-custom", true)
 	    	.append("div").classed("panel-body", true)
 	    	.append("h4")
 	    	.attr("align", "left")
