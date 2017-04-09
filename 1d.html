@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>GrabGit</title>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" type="text/css" />
+	
+	<style>
+		body{
+			padding-top: 20px;
+		}
+		input[type=checkbox]{
+		  -ms-transform: scale(0.75); /* IE */
+		  -moz-transform: scale(0.75); /* FF */
+		  -webkit-transform: scale(0.75); /* Safari and Chrome */
+		  -o-transform: scale(0.75); /* Opera */
+		  padding: 0px;
+		  margin:0px;
+		  vertical-align: text-bottom;
+		}
+
+		.syntaxhighlighter table td.gutter .line{
+			text-align: left !important;
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPython.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.get('http://kfwong.com:3000/api/omg', function(data){
+				var lines = data.split('\n');
+				var hashPattern =  new RegExp('^[0-9a-f]{5,40}');
+				var authorPattern = new RegExp('^author (.*)');
+				var summaryPattern = new RegExp('^summary (.*)');
+
+				// filter out unnecessary information
+				lines = lines.filter(function(line){
+					return !line.startsWith('author-mail') &&
+						!line.startsWith('author-time') &&
+						!line.startsWith('author-tz') &&
+						!line.startsWith('committer') &&
+						!line.startsWith('committer-mail') &&
+						!line.startsWith('committer-time') &&
+						!line.startsWith('committer-tz') &&
+						!line.startsWith('filename') &&
+						!line.startsWith('previous');
+				})
+
+				// extract the source codes
+				var code = lines.filter(function(line){
+					return !hashPattern.test(line) &&
+						!authorPattern.test(line) &&
+						!summaryPattern.test(line);
+				}).join('\n').replace('<', '&lt');
+
+				$('.prettyprint').text(code);
+
+				SyntaxHighlighter.highlight();
+
+				// setup extra info per line
+				var currentLineNumber = -1;
+				lines.forEach(function(line){
+					if(hashPattern.test(line)){
+						var _line = line.split(' ');
+						var hash = _line[0];
+						var hashShort = hash.substring(0,5);
+
+						currentLineNumber = _line[2];
+
+						$('.number'+currentLineNumber).attr('data-hash', hash);
+
+						// toggle highlighted line (one line at a time)
+						$('.number'+currentLineNumber).on('click', function(){
+							let _currentLineNumber = _line[2];
+							if($(this).hasClass('highlighted')){
+								$('.line').removeClass('highlighted');
+
+								$('#commit-history').html('<div class="item"><div class="content"><div class="description">Nothing is selected.</div></div></div>');
+							}else{
+								$('.line').removeClass('highlighted');
+								$('.number'+_currentLineNumber).toggleClass('highlighted');
+								$('#commit-history').html('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+$('.number'+_currentLineNumber).attr('data-author')+'</a><div class="description">'+hashShort+'<br/>'+$('.number'+_currentLineNumber).attr('data-summary')+'</div></div></div>');
+							}
+						});
+
+						// popover hash
+						$('.gutter .number'+currentLineNumber).html('<span class="hash hint--right" style="text-align:right;cursor:pointer;">'+hashShort+'&#9;</span>'+currentLineNumber);
+
+						// toggle for line
+						$('.number'+currentLineNumber).on('mouseover', function(){
+							let _currentLineNumber = _line[2];
+							$('.number'+_currentLineNumber).css('color', '#6CE26C');
+						});
+						$('.number'+currentLineNumber).on('mouseout', function(){
+							let _currentLineNumber = _line[2];
+							$('.number'+_currentLineNumber).css('color', '#afafaf');
+						});
+
+					}else if(authorPattern.test(line)){
+						var author = authorPattern.exec(line)[1];
+
+						$('.number'+currentLineNumber).attr('data-author', author);
+
+						$('.gutter .number'+currentLineNumber +' .hash').attr('data-hint', author);
+					}else if(summaryPattern.test(line)){
+						var summary = summaryPattern.exec(line)[1];
+
+						$('.number'+currentLineNumber).attr('data-summary', summary);
+
+						var dataHint = $('.gutter .number'+currentLineNumber + ' .hash');
+						dataHint.attr('data-hint', dataHint.attr('data-hint') + ": " + summary);
+					}
+				});
+			});
+
+			$('#line-range').on('change', function(){
+				let lineRange = $(this).val().split('-');
+				let lineStart = lineRange[0];
+				let lineEnd = lineRange[1];
+
+				$('.line').removeClass('highlighted');
+				$('#commit-history').empty();
+
+				for(let i=lineStart; i<=lineEnd; i++){
+					$('.number'+i).toggleClass('highlighted');
+
+					let hash = $('.number'+i).attr('data-hash');
+					let author = $('.number'+i).attr('data-author');
+
+					if($('#commit-history').find('.'+hash).length == 0){
+						$('#commit-history').append('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+author+'</a><div class="description">'+hash.substring(0,5)+'<br/>'+$('.number'+i).attr('data-summary')+'</div></div></div>');
+					}
+				}
+			});
+
+		});
+	</script>
+</head>
+<body>
+<div class="ui container">
+	<h1 class="ui dividing header">GrabGit</h1>
+	<p>GIT-Guard should show the commit history of all the users, for a specific file in the repo. It should also provide an option to select a code chunk (specific line numbers) and show the history of edits on those lines.</p>
+
+	<form class="ui form">
+	  <div class="field">
+	    <label>Repository</label>
+	    <input name="repository" placeholder="format: owner/repo (e.g: tungnk1993/scrappy)" type="text">
+	  </div>
+	  <div class="field">
+	    <label>Filename</label>
+	    <input name="filename" placeholder="filename (relative path from repository root)" type="text">
+	  </div>
+	  <button class="ui button" type="submit">Submit</button>
+	</form>
+
+    <div class="ui two column grid">
+      <div class="twelve wide column">
+      	<pre class="prettyprint brush: py;"></pre>
+      </div>
+      <div class="four wide column">
+      	<h2 class="ui dividing header">Commit History</h2>
+		<form class="ui form" onsubmit="return false;">
+		  <div class="field">
+		    <label>Line Range</label>
+		    <input id="line-range" name="lineRange" placeholder="e.g: 11-30 (Optional)" type="text">
+		  </div>
+		</form>
+		<div class="ui divider"></div>
+      	<div id="commit-history" class="ui relaxed divided list">
+		  <div class="item">
+		    <div class="content">
+		      <div class="description">Nothing is selected.</div>
+		    </div>
+		  </div>
+		 </div>
+    </div>
+  </div>
+</body>
+</html>
