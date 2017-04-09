@@ -243,17 +243,19 @@ d3.json("data/data.json", function(error, data) {
 	    console.log(d.list);
 	    var commitDisplay = d3.select("#commitDisplay").select(".jumbotron");
 	    commitDisplay.select("h3").remove();	//remove help header
-	    commitDisplay.selectAll("h4").remove();	//removes previous entries
+	    commitDisplay.selectAll("div").remove();	//removes previous entries
 
-	    commitDisplay.selectAll("h4")
+	    commitDisplay.selectAll("div")
 	    	.data(d.list)
-	    	.enter().append("h4")
+	    	.enter().append("div").classed("panel panel-primary panel-custom", true)
+	    	.append("div").classed("panel-body", true)
+	    	.append("h4")
 	    	.attr("align", "left")
 	    	.html(function(d) { 
 	    		var commit = ""; 
 	    		var tabSpacing = "&nbsp;&nbsp;&nbsp;&nbsp;";
 
-	    		commit += "Name: " + d.name + "<br>";
+	    		commit += "Author: " + d.name + "<br>";
 	    		commit += "Commit Date: " + d.dateAndTime + "<br>";
 	    		commit += "Commit Message:<br>" + tabSpacing + d.message.replace("\n", "<br>&nbsp;&nbsp;&nbsp;") + "<br>";
 	    		commit += "Added " + d.add + " lines<br>";
