@@ -248,7 +248,7 @@ d3.json("data/data.json", function(error, data) {
 	    commitDisplay.selectAll("div")
 	    	.data(d.list)
 	    	.enter()
-	    	.append("div").classed("panel panel-primary panel-custom", true)
+	    	.append("div").classed("panel panel-custom", true)
 	    	.append("div").classed("panel-body", true)
 	    	.append("h4")
 	    	.attr("align", "left")
