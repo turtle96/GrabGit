@@ -41,7 +41,8 @@ text {
 }
 
 .panel-custom {
-  border-width: medium;
-  border-color: #5C6BC0; 
+  /*border-width: 2px;*/
+  /*border-color: white;*/ 
   background: #FAFAFA;
+  box-shadow: 2px 2px 2px #999999;
 }
