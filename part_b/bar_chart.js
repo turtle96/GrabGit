@@ -15,7 +15,7 @@ var svg = d3.select("#chartDisplay")
 var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1bc";
 var dataJsonFilePath = "data/data.json";
 
-d3.json(dataJsonFilePath, function(error, data) {
+d3.json(url, function(error, data) {
 	var dataSet = {};
 	var currentDate, currentMonth = null, currentName, monthKey;
 	var keys = [];
@@ -23,7 +23,7 @@ d3.json(dataJsonFilePath, function(error, data) {
 
 	var minDate = null, maxDate = null;
 	
-	console.log(data);
+	//console.log(data);
 
 	data.forEach(function(author){
 		//console.log(author);
@@ -80,8 +80,8 @@ d3.json(dataJsonFilePath, function(error, data) {
 		deleted = 0;
 	});
 
-	console.log(dataSet);
-	console.log(keys);
+	//console.log(dataSet);
+	//console.log(keys);
 
 	minDate.subtract(1, "months");
 	minDate.startOf('day');   
@@ -104,7 +104,7 @@ d3.json(dataJsonFilePath, function(error, data) {
   		startDate.add(1, "months");
   	}
 
-  	console.log("Interval: " + interval);
+  	//console.log("Interval: " + interval);
   	var bandwidth = (width-margin*2)/interval;
   	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.2*keys.length);	
 
@@ -124,7 +124,7 @@ d3.json(dataJsonFilePath, function(error, data) {
 		return 0;
 	}); });
 
-	console.log("y axis range: " + yMin + ", " + yMax);
+	//console.log("y axis range: " + yMin + ", " + yMax);
 
 	y.domain([yMin, yMax]);
 
@@ -202,7 +202,7 @@ d3.json(dataJsonFilePath, function(error, data) {
     		.style('left', (d3.event.layerX + 10) + "px");
 	});
 
-	console.log("y(0): " + y(0));
+	//console.log("y(0): " + y(0));
 	
 	svg.append("g")
 		.attr("class", "axis x")
