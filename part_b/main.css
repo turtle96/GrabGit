@@ -14,8 +14,21 @@ text {
   font-size: 12px;
 }
 
+#title {
+  margin-left: 12px;
+}
+
+#intro {
+  margin-left: 12px;
+}
+
 #chartDisplay {
   padding: 10px;
+  display: none;
+}
+
+#commitDisplay {
+  display: none;
 }
 
 .axis path, .axis line {
@@ -41,8 +54,11 @@ text {
 }
 
 .panel-custom {
-  /*border-width: 2px;*/
-  /*border-color: white;*/ 
   background: #FAFAFA;
   box-shadow: 2px 2px 2px #999999;
 }
+
+.form-group {
+  margin: 12px;
+}
+
