@@ -6,8 +6,8 @@ function displayChart() {
 
 	$.getScript("bar_chart.js", function(){
 		$("#helpHeader").show();
-		$("#chartDisplay").slideDown("slow");
 		$("#commitDisplay").slideDown("slow");
+		$("#chartDisplay").slideDown("slow");
 	});
 
 	
@@ -16,6 +16,9 @@ function displayChart() {
 $(document).ready(function(){
 
 	$('#submitBtn').click(function(){
+		var form = $('form').serializeArray();
+		console.log(form);
+		
 		displayChart();
 	});
 });
