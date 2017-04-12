@@ -8,16 +8,17 @@
         if (strlen($line) == 0) {
             continue;
         }
-        echo $line;
         $tokens = explode(" ", $line, 3);
-        $output[] = array($tokens[2], $tokens[0]);
+        $output[] = array($tokens[0], $tokens[2]);
     }
     fclose($myfile);
+    
+    rsort($output);
 
     $newFile = fopen("locStatsCSV.csv", "w");
-    fwrite($newFile, "name,loc\n");
+    fwrite($newFile, "name,value\n");
     foreach ($output as $line) {
-        $toWrite = $line[0].",".$line[1]."\n";
+        $toWrite = $line[1].",".$line[0]."\n";
         fwrite($newFile, $toWrite);
     }
     fclose($newFile);
