@@ -1,3 +1,5 @@
+<p align="center"><img src="img/icon.png" width="200"><br>
+
 # GrabGit
 Note: The browser may block unsafe content because demo contains files load over mixed HTTP & HTTPS. You need to explicitly allow these script by clicking the 'shield' button on the addressbar (Chrome).
 
