@@ -11,9 +11,14 @@
         echo $line;
         $tokens = explode(" ", $line, 3);
         $output[] = array($tokens[2], $tokens[0]);
-        
     }
     fclose($myfile);
 
-    var_dump($output);
+    $newFile = fopen("locStatsCSV.csv", "w");
+    fwrite($newFile, "name,loc\n");
+    foreach ($output as $line) {
+        $toWrite = $line[0].",".$line[1]."\n";
+        fwrite($newFile, $toWrite);
+    }
+    fclose($newFile);
 ?>
