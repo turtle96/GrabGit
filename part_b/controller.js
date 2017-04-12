@@ -1,12 +1,16 @@
 function displayChart() {
-	$("#chartDisplay").empty();
-	$("#commitContainer").find("div").remove(".panel");
+	$("#chartDisplay").hide();
+	$("#commitDisplay").hide();
+	$("#chartDisplay").empty();	//clear graph
+	$("#commitContainer").find("div").remove(".panel");	//removes only the panels for commits
 
-	$.getScript("bar_chart.js");
+	$.getScript("bar_chart.js", function(){
+		$("#helpHeader").show();
+		$("#chartDisplay").slideDown("slow");
+		$("#commitDisplay").slideDown("slow");
+	});
+
 	
-	$("#chartDisplay").show();
-	$("#commitDisplay").show();
-	$("#helpHeader").show();
 }
 
 $(document).ready(function(){

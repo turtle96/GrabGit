@@ -242,6 +242,7 @@ d3.json(dataJsonFilePath, function(error, data) {
 		.attr("y", 16)
 		.text(function(d) { return d; });
 
+	/******** Show Commit History ********/
 	path.on("click", function(d) {
 	    //console.log(d.list);
 	    $("#helpHeader").hide();
