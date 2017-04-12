@@ -12,7 +12,10 @@ var svg = d3.select("#chartDisplay")
 		.attr("height", height)
 		.attr("width", width);
 
-d3.json("data/data.json", function(error, data) {
+var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1bc";
+var dataJsonFilePath = "data/data.json";
+
+d3.json(dataJsonFilePath, function(error, data) {
 	var dataSet = {};
 	var currentDate, currentMonth = null, currentName, monthKey;
 	var keys = [];
@@ -240,10 +243,10 @@ d3.json("data/data.json", function(error, data) {
 		.text(function(d) { return d; });
 
 	path.on("click", function(d) {
-	    console.log(d.list);
-	    var commitDisplay = d3.select("#commitDisplay").select(".jumbotron");
-	    commitDisplay.select("#helpHeader").remove();	//remove help header
-	    commitDisplay.selectAll("div").remove();	//removes previous entries
+	    //console.log(d.list);
+	    $("#helpHeader").hide();
+	    $("#commitContainer").find("div").remove(".panel");
+	    var commitDisplay = d3.select("#commitContainer");
 
 	    commitDisplay.selectAll("div")
 	    	.data(d.list)
