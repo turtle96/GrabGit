@@ -11,10 +11,10 @@
 
   var svg = d3.select('#chart')
   .append('svg')
-  .attr("width", diameter+100)
+  .attr("width", diameter)
   .attr("height", diameter)
   .append("g")
-  .attr("transform", "translate(100,0)");
+  .attr("transform", "translate(0,0)");
 
   var tooltip = d3.select('#chart')
   .append('div')
@@ -29,10 +29,16 @@
   var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e";
   var filename = "locStatsCSV.csv";
 
-  d3.csv(filename, function(error, data){
+  d3.csv(url, function(error, data){
 
     //convert numerical values from strings to numbers
     data = data.map(function(d){ d.value = +d.value; return d; });
+    
+    $("#first").text(data[0].name);
+    $("#second").text(data[1].name);
+    $("#third").text(data[2].name);
+    $("#fourth").text(data[3].name);
+    $("#fifth").text(data[4].name);
 
     //bubbles needs very specific format, convert data to this.
     var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });
