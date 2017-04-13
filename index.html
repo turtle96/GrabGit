@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GrabGit</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+  <body> 
+    <div class="row" align="center">
+      <img id="logo" src="img/icon.png" width="250">
+      <h1 align="center">GrabGit</h1>
+    </div>
+
+    <div id="repoFormContainer" class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <form class="vertical-form">
+          <div class="form-group">
+            <input type="text" class="form-control" name="repoName" 
+              placeholder="Enter repository's url here">    
+          </div>
+          <div class="form-group" align="center">
+            <button id="submitBtn" type="button" class="btn btn-default">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="features" align="center" class="row"> 
+
+      <div class="col-xs-6 col-xs-offset-3">
+        <h1>Features</h1> 
+        <div class="list-group">
+          <a href="http://www.google.com" class="list-group-item">Contributions for All Team Members</a>
+          <a href="#" class="list-group-item">View Commit History by Author Name</a>
+          <a href="#" class="list-group-item">View Commit History by File</a>
+          <a href="#" class="list-group-item">Lines of Code Written by Each Team Member</a>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="controller.js"></script>
+  </body>
+</html>
