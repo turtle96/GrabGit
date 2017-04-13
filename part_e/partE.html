@@ -2,15 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>CS3219 A5 - Part E</title>
+    <title>GrabGit</title>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="my-style.css">
   </head>
   <body>
-    <h3>Number of lines of code by each team member</h3>
-    <div align="center">
+    <div class="col-xs-10 col-xs-offset-1">
+      <h1>Lines of Code By Each Team Member</h1>
+    <p>This visualisation shows the number of lines of code written by each team member in the final project version (master).</p>
+    </div>
+    
+    <div class="col-xs-10 col-xs-offset-1">
       <div id="chart"></div>
     </div>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="bubble_chart.js"></script>
   </body>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bubble_chart.js"></script>
 </html>

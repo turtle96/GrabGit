@@ -2,17 +2,13 @@ body {
   font-family: sans-serif;
 }
 
-h3 {
-  text-align: center;
-}
-
 #chart {
   height: 360px;
   position: relative;
   width: 360px;
 }
 
-.tooltip {
+#custom-tooltip {
   font-family: "Lucida Console";
   background: #212121;
   box-shadow: 0 0 5px #999999;
@@ -26,8 +22,4 @@ h3 {
   top: 95px;
   width: 150px;
   z-index: 10;
-}
-
-.legend {
-  font-size: 11px;
 }

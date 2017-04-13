@@ -11,22 +11,25 @@
 
   var svg = d3.select('#chart')
   .append('svg')
-  .attr("width", diameter)
+  .attr("width", diameter+100)
   .attr("height", diameter)
   .append("g")
-  .attr("transform", "translate(0,0)");
+  .attr("transform", "translate(100,0)");
 
   var tooltip = d3.select('#chart')
   .append('div')
-  .attr('class', 'tooltip');
+  .attr('id', 'custom-tooltip');
   
   tooltip.append('div')
     .attr('class', 'name');
 
   tooltip.append('div')
     .attr('class', 'value');
+  
+  var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e";
+  var filename = "locStatsCSV.csv";
 
-  d3.csv("http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e", function(error, data){
+  d3.csv(filename, function(error, data){
 
     //convert numerical values from strings to numbers
     data = data.map(function(d){ d.value = +d.value; return d; });
