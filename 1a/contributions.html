@@ -1,277 +1,207 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-
-#chart {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  width: 800px;
-  height: 550px;
-  padding-top: 20px;
-  position: relative;
-  float: left;
-}
-
-
-
-#legends {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  width: 200px;
-  height: 550px;
-  padding-top: 10px;
-  position: relative;
-  float: left;	
-}
-
-.slices {
-	margin: 0 auto;
-}
-
-label {
-	display: block;
-}
-
-svg {
-	width: 100%;
-	height: 100%;
-}
-
-path.slice{
-	stroke-width:2px;
-}
-
-polyline{
-	opacity: .5;
-	stroke: black;
-	stroke-width: 2px;
-	fill: none;
-}
-
-</style>
+<head>
+    <link rel="stylesheet" href="css/contributions.css">
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- <script type="text/javascript" src="scripts/contributions.js"></script> -->
+</head>
 <body>
 	<div id="chart"></div>
 	<form>
 		<label><input type="radio" name="mode" value="commits" checked> Commits</label>
 		<label><input type="radio" name="mode" value="additions"> Additions</label>
 		<label><input type="radio" name="mode" value="deletions"> Deletions</label>
-		<label><input type="radio" name="mode" value="add+deletions"> Additions + Deletions</label>
+		<label><input type="radio" name="mode" value="ad"> Additions + Deletions</label>
 	</form>
 	<div id="legends"></div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
 
-var svg = d3.select("#chart")
-	.append("svg")
-	.append("g");
+	<script>
 
-svg.append("g")
-	.attr("class", "slices");
-svg.append("g")
-	.attr("class", "labels");
-svg.append("g")
-	.attr("class", "lines");
-var width = 800,
-    height = 500,
-	radius = Math.min(width, height) / 2;
-	currentData = "commits"
-var pie = d3.layout.pie()
-	.sort(null)
-	.value(function(d) {
-		switch(currentData) {
-			case "commits":
-				return d.commits
-			case "additions":
-				return d.additions
-			case "deletions":
-				return d.deletions
-		}
-	});
+	  var svg = d3.select("#chart")
+	    .append("svg")
+	    .append("g");
 
-var arc = d3.svg.arc()
-	.outerRadius(radius * 0.9)
-	.innerRadius(radius * 0.4);
+	  svg.append("g")
+	    .attr("class", "slices");
+	  svg.append("g")
+	    .attr("class", "labels");
+	  svg.append("g")
+	    .attr("class", "lines");
+	  var width = 800,
+	      height = 500,
+	    radius = Math.min(width, height) / 2;
+	    currentData = "commits"
 
-var arcOver = d3.svg.arc()
-	.outerRadius(radius * 0.9 + 10)
-	.innerRadius(radius * 0.4 + 10);
+	  var pie = d3.layout.pie()
+	    .sort(null)
+	    .value(function(d) {
+	      switch(currentData) {
+	        case "commits":
+	          return d.commits
+	        case "additions":
+	          return d.additions
+	        case "deletions":
+	          return d.deletions
+	        case "ad":
+	          return d.additions + d.deletions
+	      }
+	    });
 
-var outerArc = d3.svg.arc()
-	.innerRadius(radius * 1)
-	.outerRadius(radius * 1);
+	  var arc = d3.svg.arc()
+	    .outerRadius(radius * 0.9)
+	    .innerRadius(radius * 0.4);
 
-svg.attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
+	  var arcOver = d3.svg.arc()
+	    .outerRadius(radius * 0.9 + 20)
+	    .innerRadius(radius * 0.4 + 10);
 
-var total_commits = 0
-var total_additions = 0
-var total_deletions = 0
+	  var outerArc = d3.svg.arc()
+	    .innerRadius(radius * 1)
+	    .outerRadius(radius * 1);
 
-function key(d){ 
-	return d.data.author; 
-};
+	  svg.attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
 
-function getData(d){
-	console.log(currentData)
-	switch(currentData) {
-		case "commits":
-			return d.data.commits
-		case "additions":
-			return d.data.additions
-		case "deletions":
-			return d.data.deletions
-	}
-}
+	  var total_commits = 0
+	  var total_additions = 0
+	  var total_deletions = 0
 
-function totalData(){
-	switch(currentData) {
-		case "commits":
-			return total_commits
-		case "additions":
-			return total_additions
-		case "deletions":
-			return total_deletions
-	}
-}
+	  function key(d){ 
+	    return d.data.author; 
+	  };
 
+	  function getData(d){
+	    switch(currentData) {
+	      case "commits":
+	        return d.data.commits
+	      case "additions":
+	        return d.data.additions
+	      case "deletions":
+	        return d.data.deletions
+	      case "ad":
+	        return d.data.additions + d.data.deletions
+	    }
+	  }
 
-function midAngle(d){
-	return d.startAngle + (d.endAngle - d.startAngle) / 2;
-}
+	  function totalData(){
+	    switch(currentData) {
+	      case "commits":
+	        return total_commits
+	      case "additions":
+	        return total_additions
+	      case "deletions":
+	        return total_deletions
+	      case "ad":
+	        return total_additions + total_deletions
+	    }
+	  }
 
-var color = d3.scale.ordinal()
-	.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-var tooltip = d3.select("#chart")
-    .append("div")
-    .style("position", "absolute")
-    .style("z-index", "10")
-    .style("visibility", "hidden")
-    .style("background-color", "#ffffff")
-    .style("padding-left", "5px")
-    .style("padding-right", "5px")
-    .style("padding-top", "2px")
-    .style("padding-bottom", "2px")
-    .style("border", "1px solid black")
-    .text("a simple tooltip");
-
-d3.csv("commit.csv", function(data) {
-	data.forEach(function(d) {
-		d.commits = +d.commits
-		d.additions = +d.additions
-		total_commits += d.commits
-		total_additions += d.additions
-	})
-
-	/* ------- PIE SLICES -------*/
-	var slice = svg.select(".slices").selectAll("slice")
-		.data(pie(data), key);
-
-	function updateText(d) {
-		percentage = Math.round(getData(d)/totalData() * 1000) / 10
-		tooltip.text(percentage.toString() + "% (" + getData(d).toString() + 
-			" " + currentData + ")")
-	}
-
-	slice.enter()
-		.append("path")
-		.attr("d", arc)
-		.style("fill", function(d) { 
-			return color(key(d)); 
-		})
-		.attr("class", "slice")
-		.on("mouseover", function(d) {
-			updateText(d)
-			tooltip.style("visibility", "visible");
-            d3.select(this).transition()
-                .duration(200)
-                .attr("d", arcOver)
-		})
-		.on("mousemove", function(d) {
-			updateText(d)
-			return tooltip.style("top", (event.pageY - 10)+"px").style("left",(event.pageX + 10)+"px");
-		})
-		.on("mouseout", function(d) {
-            d3.select(this).transition()
-                .duration(200)
-                .attr("d", arc)
-			updateText(d)
-			return tooltip.style("visibility", "hidden");			
-		})
-		.each(function(d) {
-			this._current = d
-		})
-
-	d3.selectAll("input").on("change", function change() {
-		currentData = this.value
-		slice.data(pie(data),key)
-		slice.transition().duration(750).attrTween("d",arcTween)
-	})
-
-	function arcTween(a) {
-		var i = d3.interpolate(this._current, a);
-		this._current = i(0);
-		return function(t) {
-			return arc(i(t));
-		};
-	}
+	  function getUnit() {
+	    switch(currentData) {
+	      case "commits":
+	        return currentData
+	      default:
+	        return "lines"
+	    }
+	  }
 
 
-	/* ------- TEXT LABELS -------*/
+	  function midAngle(d){
+	    return d.startAngle + (d.endAngle - d.startAngle) / 2;
+	  }
 
-	// var text = svg.select(".labels").selectAll("text")
-	// 	.data(pie(data), key);
+	  var color = d3.scale.ordinal()
+	    .range(d3.scale.category20().range());
 
-	// text.enter()
-	// 	.append("text")
-	// 	.attr("transform", function(d) {
-	// 		var pos = outerArc.centroid(d)
-	// 		pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
-	// 		return "translate("+ pos +")";
-	// 	})
-	// 	.style("text-anchor", function(d) {
-	// 		return midAngle(d) < Math.PI ? "start": "end"
-	// 	})
-	// 	.attr("dy", ".35em")
-	// 	.text(function(d) {
-	// 		return d.data.author;
-	// 	});
+	  var tooltip = d3.select("#chart")
+	      .append("div")
+	      .attr("class", "tooltipStyle")
+	  var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1a"
 
-	// /* ------- SLICE TO TEXT POLYLINES -------*/
+	  d3.csv("cad.csv", function(data) {
+	    data.forEach(function(d) {
+	      d.commits = +d.commits
+	      d.additions = +d.additions
+	      d.deletions = +d.deletions
+	      total_commits += d.commits
+	      total_additions += d.additions
+	      total_deletions += d.deletions
+	    })
+	    /* ------- PIE SLICES -------*/
+	    var slice = svg.select(".slices").selectAll("slice")
+	      .data(pie(data), key);
 
-	// var polyline = svg.select(".lines").selectAll("polyline")
-	// 	.data(pie(data), key);
-	
-	// polyline.enter()
-	// 	.append("polyline")
-	// 	.attr("points", function(d) {
-	// 		pos = outerArc.centroid(d)
-	// 		pos[0] = radius * 0.98 * (midAngle(d) < Math.PI ? 1 : -1);
-	// 		return [arc.centroid(d), outerArc.centroid(d), pos];
-	// 	});
+	    function updateText(d) {
+	      percentage = Math.round(getData(d)/totalData() * 10000) / 100
+	      tooltip.html(key(d) + "<br>" + percentage.toString() + "% (" + getData(d).toString() + 
+	        " " + getUnit() + ")")
+	    }
 
-	/* ------- Name legends -------*/
+	    slice.enter()
+	      .append("path")
+	      .attr("d", arc)
+	      .style("fill", function(d) { 
+	        return color(key(d)); 
+	      })
+	      .attr("class", "slice")
+	      .on("mouseover", function(d) {
+	        updateText(d)
+	        tooltip.style("visibility", "visible");
+	              d3.select(this).transition()
+	                  .duration(200)
+	                  .attr("d", arcOver)
+	      })
+	      .on("mousemove", function(d) {
+	        updateText(d)
+	        return tooltip.style("top", (event.pageY - 10)+"px").style("left",(event.pageX + 10)+"px");
+	      })
+	      .on("mouseout", function(d) {
+	              d3.select(this).transition()
+	                  .duration(200)
+	                  .attr("d", arc)
+	        updateText(d)
+	        return tooltip.style("visibility", "hidden");     
+	      })
+	      .each(function(d) {
+	        this._current = d
+	      })
 
-	var legend = d3.select("#legends").append("svg")
-	    .attr("class", "legend")
-	    .attr("width", 100)
-	    .attr("height", 200)
-	    .selectAll("g")
-	    .data(data)
-	    .enter().append("g")
-	    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+	    d3.selectAll("input").on("change", function change() {
+	      currentData = this.value
+	      slice.data(pie(data),key)
+	      slice.transition().duration(750).attrTween("d",arcTween)
+	    })
 
-	legend.append("rect")
-	    .attr("width", 18)
-	    .attr("height", 18)
-	    .style("fill", function(d) { return color(d.author); });
+	    function arcTween(a) {
+	      var i = d3.interpolate(this._current, a);
+	      this._current = i(0);
+	      return function(t) {
+	        return arc(i(t));
+	      };
+	    }
 
-	legend.append("text")
-	    .attr("x", 24)
-	    .attr("y", 9)
-	    .attr("dy", ".35em")
-	    .text(function(d) { return d.author; });
-});
+	    if (data.length <= 20) {
+	      /* ------- Name legends -------*/
+	      var legend = d3.select("#legends").append("svg")
+	          .attr("class", "legend")
+	          .attr("width", 100)
+	          .attr("height", 200)
+	          .selectAll("g")
+	          .data(data)
+	          .enter().append("g")
+	          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
+	      legend.append("rect")
+	          .attr("width", 18)
+	          .attr("height", 18)
+	          .style("fill", function(d) { return color(d.author); });
 
-</script>
+	      legend.append("text")
+	          .attr("x", 24)
+	          .attr("y", 9)
+	          .attr("dy", ".35em")
+	          .text(function(d) { return d.author; });
+
+	    }
+	  });
+	</script>
 </body>
