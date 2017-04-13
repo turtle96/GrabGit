@@ -26,7 +26,7 @@
   tooltip.append('div')
     .attr('class', 'value');
 
-  d3.csv("locStatsCSV.csv", function(error, data){
+  d3.csv("http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e", function(error, data){
 
     //convert numerical values from strings to numbers
     data = data.map(function(d){ d.value = +d.value; return d; });
