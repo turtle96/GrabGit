@@ -23,7 +23,7 @@ d3.json(url, function(error, data) {
 
 	var minDate = null, maxDate = null;
 	
-	//console.log(data);
+	console.log(data);
 
 	data.forEach(function(author){
 		//console.log(author);
