@@ -1,0 +1,60 @@
+#chart {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  width: 800px;
+  height: 600px;
+  top: -40px;
+  position: relative;
+  float: left;
+}
+
+#legends {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  width: 200px;
+  height: 600px;
+  padding-top: 10px;
+  position: relative;
+  float: left;	
+}
+
+.tooltipStyle {
+  font-family: "Lucida Console";
+  font-size: 12px;
+  position: absolute;
+  visibility: hidden;
+  background-color: #212121;
+  box-shadow: 0 0 5px #999999;
+  color: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: 1px solid black;
+  text-align: center;
+  z-index: 10;
+}
+
+.slices {
+	margin: 0 auto;
+}
+
+label {
+	display: block;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+}
+
+path.slice{
+	stroke-width:2px;
+}
+
+polyline{
+	opacity: .5;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
