@@ -99,7 +99,7 @@ var tooltip = d3.select("#chart")
 
 var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1a"
 
-d3.csv("cad.csv", function(data) {
+d3.csv(url, function(data) {
   data.forEach(function(d) {
     d.commits = +d.commits
     d.additions = +d.additions
