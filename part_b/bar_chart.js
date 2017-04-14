@@ -1,4 +1,4 @@
-function display(names) {	
+function display(names, since, until) {	
 	var data;
 
 	var height = 500;
@@ -95,8 +95,13 @@ function display(names) {
 			deleted = 0;
 		});
 
-		//console.log(dataSet);
+		console.log(dataSet);
 		//console.log(keys);
+
+		if (jQuery.isEmptyObject(dataSet)) {
+			alert("Looks like the names are invalid, please check and try again.");
+			return;
+		}
 
 		minDate.subtract(1, "months");
 		minDate.startOf('day');   
