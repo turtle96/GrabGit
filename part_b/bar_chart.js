@@ -24,7 +24,7 @@ function display(names, since, until) {
 
 		var minDate = null, maxDate = null;
 		
-		console.log(data);
+		//console.log(data);
 
 		data = data.filter(function(author) {
 			var result = false;
@@ -103,7 +103,7 @@ function display(names, since, until) {
 			deleted = 0;
 		});
 
-		console.log(dataSet);
+		//console.log(dataSet);
 		//console.log(keys);
 
 		minDate.subtract(1, "months");
