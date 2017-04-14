@@ -13,10 +13,23 @@ $(document).ready(function(){
 
 function submitForm() {
 	var form = $('form').serializeArray();
-	form = form.map(function(a) { return a.value;});
 	console.log(form);
+	var names = form.map(function(a) { 
+		if (a.name.includes("authorName")) {
+			return a.value;
+		}
+		else {
+			return "";
+		}
+	});
+	console.log(names);
 
-	displayChart(form);
+	var since = form[5].value;
+	var until = form[6].value;
+
+	console.log(since + " " + until);
+
+	displayChart(names, since, until);
 }
 
 function displayChart(names) {
