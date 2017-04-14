@@ -1,0 +1,1954 @@
+NEW_ENTRY
+olveyra 
+none@none 
+6/30/2008, 30 Jun 2008 2:20:27 PM 
+commitMsgStart
+pbcluster commit
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4031
+
+commitMsgEnd
+61	85	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+18	29	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+25	79	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+2	8	scrapy/trunk/scrapy/contrib/pbcluster/worker/testworker.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+6/30/2008, 30 Jun 2008 2:24:49 PM 
+commitMsgStart
+deleted prints
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4032
+
+commitMsgEnd
+0	3	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/1/2008, 01 Jul 2008 1:17:23 PM 
+commitMsgStart
+Ok, first functional version of pbcluster
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4036
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+66	8	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+35	0	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+0	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/1/2008, 01 Jul 2008 3:17:00 PM 
+commitMsgStart
+added environment options
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4037
+
+commitMsgEnd
+4	4	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+24	6	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+10	10	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/1/2008, 01 Jul 2008 3:28:07 PM 
+commitMsgStart
+fix and webservice api doc update
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4038
+
+commitMsgEnd
+2	0	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+13	5	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/2/2008, 02 Jul 2008 3:07:29 PM 
+commitMsgStart
+added persistence of pending list in master
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4039
+
+commitMsgEnd
+10	2	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/2/2008, 02 Jul 2008 7:42:36 PM 
+commitMsgStart
+- added svn update support
+- removed passing of env variables
+- added automatic group settings load
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4040
+
+commitMsgEnd
+24	6	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+4	21	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+1	3	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+13	8	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/4/2008, 04 Jul 2008 1:22:27 PM 
+commitMsgStart
+added --pidfile option
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4041
+
+commitMsgEnd
+7	1	scrapy/trunk/scrapy/command/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/4/2008, 04 Jul 2008 1:23:21 PM 
+commitMsgStart
+master logs response from worker.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4042
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/4/2008, 04 Jul 2008 6:59:36 PM 
+commitMsgStart
+pass to crawl process the correct python path
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4043
+
+commitMsgEnd
+7	6	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/4/2008, 04 Jul 2008 7:02:19 PM 
+commitMsgStart
+pep8 pal pablo
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4044
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/7/2008, 07 Jul 2008 5:51:09 PM 
+commitMsgStart
+better way to stop engine with process signals
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4046
+
+commitMsgEnd
+0	1	scrapy/trunk/scrapy/core/engine.py
+2	1	scrapy/trunk/scrapy/core/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/7/2008, 07 Jul 2008 6:00:35 PM 
+commitMsgStart
+added CLUSTER_MASTER_CACHEFILE setting, changed SVN_WORKDIR to
+CLUSTER_WORKER_SVNWORKDIR
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4047
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+2	2	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/8/2008, 08 Jul 2008 6:03:20 PM 
+commitMsgStart
+fix a bug with rescheduling a domain when no free slot are in worker
+(a domain was passed instead of a list, and that raises the one-letter
+domains bug), also reschedule with priority=0)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4048
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/8/2008, 08 Jul 2008 6:08:20 PM 
+commitMsgStart
+deleted unneeded log
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4049
+
+commitMsgEnd
+0	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 3:59:08 PM 
+commitMsgStart
+added SCRAPY_PICKLED_DEFAULT_SETTINGS, a string to pass by environment
+setting an arbitrary set of settings via "pickle" python module.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4051
+
+commitMsgEnd
+3	2	scrapy/trunk/scrapy/conf/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 4:05:20 PM 
+commitMsgStart
+renamed pickled data
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4052
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/conf/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 4:08:28 PM 
+commitMsgStart
+Now worker pass settings to process via SCRAPY_PICKLED_SETTINGS
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4053
+
+commitMsgEnd
+3	6	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 4:21:23 PM 
+commitMsgStart
+Cluster Master improvements:
+
+- rescheduling now goes with original priority decreased by one
+- Added GLOBAL_CLUSTER_SETTINGS
+- Added PB remote method load_node so the worker also can initiate a
+connection
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4054
+
+commitMsgEnd
+33	17	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 6:27:19 PM 
+commitMsgStart
+changed CLUSTER_WORKER_LOGDIR to CLUSTER_LOGDIR
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4055
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 7:31:08 PM 
+commitMsgStart
+added log msg
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4056
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/11/2008, 11 Jul 2008 7:34:39 PM 
+commitMsgStart
+fixed env name
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4057
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/14/2008, 14 Jul 2008 12:35:46 PM 
+commitMsgStart
+More data in log message
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4058
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/webconsole/spiderstats.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/14/2008, 14 Jul 2008 12:42:58 PM 
+commitMsgStart
+logs extensions NotConfigured exception message
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4059
+
+commitMsgEnd
+4	2	scrapy/trunk/scrapy/extension/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/14/2008, 14 Jul 2008 1:39:58 PM 
+commitMsgStart
+pickled settings must go in overrides settings not default, because of
+precedence
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4063
+
+commitMsgEnd
+3	3	scrapy/trunk/scrapy/conf/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/14/2008, 14 Jul 2008 2:10:26 PM 
+commitMsgStart
+renamed setting SCRAPY_PICKLED_SETTINGS to
+SCRAPY_PICKLED_SETTINGS_TO_OVERRIDE
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4064
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/conf/__init__.py
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/15/2008, 15 Jul 2008 12:11:32 PM 
+commitMsgStart
+Check the node will not run a domain that is already running
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4065
+
+commitMsgEnd
+17	15	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/15/2008, 15 Jul 2008 6:06:14 PM 
+commitMsgStart
+small fix and pepocho fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4066
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/15/2008, 15 Jul 2008 6:53:37 PM 
+commitMsgStart
+- Reschedule a domain that is already running or loading in some node
+- No schedule a domain that is already scheduled
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4067
+
+commitMsgEnd
+35	11	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+1	0	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/16/2008, 16 Jul 2008 11:20:53 AM 
+commitMsgStart
+- load only one domain per node (and load the following when the run
+callback is executed). This way, we avoid to load lot of domains that
+will bounce. Also, we mix up better the domains between available nodes.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4068
+
+commitMsgEnd
+7	10	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/16/2008, 16 Jul 2008 12:09:42 PM 
+commitMsgStart
+don't update status in run callback, so to avoid lots of bouncing
+domains. The domains will be loaded softly on each node update
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4069
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/16/2008, 16 Jul 2008 7:17:46 PM 
+commitMsgStart
+- added disable_node and enable_node functions
+- removed unused imports
+- autoreload of lost nodes
+- some code improvements and fixes
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4071
+
+commitMsgEnd
+57	33	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+9	1	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+4	0	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 3:41:15 PM 
+commitMsgStart
+- added verbosity levels
+- now log paths includes a folder named by the date, so it is easier
+to mantain logs in server
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4072
+
+commitMsgEnd
+22	3	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+3	2	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+2	0	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 6:09:32 PM 
+commitMsgStart
+moved cluster-ctl script to scrapy branch
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4073
+
+commitMsgEnd
+13	9	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+74	0	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 6:14:52 PM 
+commitMsgStart
+deleted
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4074
+
+commitMsgEnd
+0	74	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 6:15:46 PM 
+commitMsgStart
+readed
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4075
+
+commitMsgEnd
+74	0	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 7:00:05 PM 
+commitMsgStart
+- --default-spider option gives the default spider (old --spider option)
+- --spider option now forces to use the given spider domain when
+arguments are urls
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4076
+
+commitMsgEnd
+7	2	scrapy/trunk/scrapy/command/models.py
+3	0	scrapy/trunk/scrapy/spider/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 7:06:03 PM 
+commitMsgStart
+option help fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4077
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/command/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/17/2008, 17 Jul 2008 7:20:10 PM 
+commitMsgStart
+fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4078
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/command/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/21/2008, 21 Jul 2008 7:14:37 PM 
+commitMsgStart
+- code fixes
+- fix when rescheduling with a new priority
+- added freeslots to status_as_dict
+- remove a domain from loading list only when reported as running in
+some node.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4082
+
+commitMsgEnd
+16	11	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/22/2008, 22 Jul 2008 5:21:55 PM 
+commitMsgStart
+Added cluster statistics report
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4091
+
+commitMsgEnd
+26	6	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+8	0	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+6	1	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+3	0	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+15	2	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+2	0	scrapy/trunk/scrapy/contrib/pbcluster/worker/testworker.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/22/2008, 22 Jul 2008 5:56:04 PM 
+commitMsgStart
+fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4093
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/23/2008, 23 Jul 2008 12:21:05 PM 
+commitMsgStart
+deleted date folder from log path
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4097
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/23/2008, 23 Jul 2008 12:32:38 PM 
+commitMsgStart
+changed default webservice port to connect on to 8060
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4098
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/23/2008, 23 Jul 2008 5:15:16 PM 
+commitMsgStart
+- added worker to master notifications.
+- deleted statistics code. will change approach
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%4099
+
+commitMsgEnd
+19	36	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+29	25	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/23/2008, 23 Jul 2008 7:13:39 PM 
+commitMsgStart
+not update nodes after scheduling, to avoid enter in a loop
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40100
+
+commitMsgEnd
+0	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/23/2008, 23 Jul 2008 7:23:47 PM 
+commitMsgStart
+fixed a bug in which pending list remains stalled because not proper
+clean out of loading list
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40101
+
+commitMsgEnd
+2	0	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/24/2008, 24 Jul 2008 3:18:29 PM 
+commitMsgStart
+- added basic statistics (needs to be improved)
+- node remotion when connection lost event
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40103
+
+commitMsgEnd
+32	7	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+6	5	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/25/2008, 25 Jul 2008 7:11:01 PM 
+commitMsgStart
+first version of scrapy-admin
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40117
+
+commitMsgEnd
+50	0	scrapy/trunk/scrapy/bin/scrapy-admin.py
+24	0	scrapy/trunk/scrapy/templates/scrapy-ctl.tmpl
+84	0	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/25/2008, 25 Jul 2008 7:40:43 PM 
+commitMsgStart
+removed code that generates confusing and mistaken import error
+message when the import error raises inside scrapy_settings.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40119
+
+commitMsgEnd
+1	7	scrapy/trunk/scrapy/conf/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/25/2008, 25 Jul 2008 10:42:57 PM 
+commitMsgStart
+re-reverted commit 119 back again to 118.
+The code removed is confusing.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40121
+
+commitMsgEnd
+1	7	scrapy/trunk/scrapy/conf/__init__.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 1:38:53 AM 
+commitMsgStart
+deleted scrapy-admin to commit again with execution access
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40123
+
+commitMsgEnd
+0	50	scrapy/trunk/scrapy/bin/scrapy-admin.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 2:23:14 AM 
+commitMsgStart
+minor adjustments and some fixes, readded scrapy-admin.py with
+execution permission
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40124
+
+commitMsgEnd
+51	0	scrapy/trunk/scrapy/bin/scrapy-admin.py
+3	3	scrapy/trunk/scrapy/templates/scrapy-ctl.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 2:49:20 AM 
+commitMsgStart
+remove wrong import from decobot and added unquote_html
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40125
+
+commitMsgEnd
+7	1	scrapy/trunk/scrapy/utils/misc.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 2:54:11 PM 
+commitMsgStart
+Added function convert_entity from decobot.utils.text_extraction
+(to complete and fix revision 124)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40126
+
+commitMsgEnd
+19	0	scrapy/trunk/scrapy/utils/misc.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 4:11:23 PM 
+commitMsgStart
+moved options nocache and nopipeline from decobot to scrapy
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40127
+
+commitMsgEnd
+2	0	scrapy/trunk/scrapy/command/commands/crawl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/27/2008, 27 Jul 2008 10:00:08 PM 
+commitMsgStart
+minor adjustments
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40128
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/bin/scrapy-admin.py
+1	1	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/28/2008, 28 Jul 2008 10:11:19 PM 
+commitMsgStart
+disabled webconsole by default
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40132
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+7/28/2008, 28 Jul 2008 10:29:55 PM 
+commitMsgStart
+in settings template, set DEFAULT_ITEM_CLASS to
+scrapy.item.ScrapedItem to enable console
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40133
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/1/2008, 01 Aug 2008 6:13:07 PM 
+commitMsgStart
+allow usage of integer "dont_filter", meaning number of times
+dont_filter will apply when redirecting.
+
+Under this scheme, dont_filter=True is the same as dont_filter=1
+and (convenient?) dont filter <= 0 means dont_filter = True forever
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40143
+
+commitMsgEnd
+4	1	scrapy/trunk/scrapy/contrib/downloadermiddleware/redirect.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/5/2008, 05 Aug 2008 11:41:49 AM 
+commitMsgStart
+add reconnect=1 parameter to mysql_connect in order to reconnect after
+a large inactivity period
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40144
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/5/2008, 05 Aug 2008 12:05:28 PM 
+commitMsgStart
+reverted last change. Seems this options is available only in very
+recent versions of mysql-python
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40145
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/5/2008, 05 Aug 2008 4:51:12 PM 
+commitMsgStart
+added MYSQL_CONNECTION_SETTINGS settings
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40146
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/templates/settings.tmpl
+2	2	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/5/2008, 05 Aug 2008 6:32:03 PM 
+commitMsgStart
+fixed a get setting in UrlToGuidService
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40147
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/web/service.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/7/2008, 07 Aug 2008 11:49:00 AM 
+commitMsgStart
+added a log to see if db settings are really being passed
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40148
+
+commitMsgEnd
+2	0	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/7/2008, 07 Aug 2008 11:56:12 AM 
+commitMsgStart
+improved last change to left definitively there
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40149
+
+commitMsgEnd
+7	1	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/7/2008, 07 Aug 2008 11:59:44 AM 
+commitMsgStart
+upss...removing a print...
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40150
+
+commitMsgEnd
+0	1	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/7/2008, 07 Aug 2008 12:26:43 PM 
+commitMsgStart
+deleting old cluster branch
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40151
+
+commitMsgEnd
+0	2	scrapy/trunk/scrapy/contrib/cluster/__init__.py
+0	2	scrapy/trunk/scrapy/contrib/cluster/master/__init__.py
+0	189	scrapy/trunk/scrapy/contrib/cluster/master/manager.py
+0	165	scrapy/trunk/scrapy/contrib/cluster/master/web.py
+0	2	scrapy/trunk/scrapy/contrib/cluster/worker/__init__.py
+0	96	scrapy/trunk/scrapy/contrib/cluster/worker/manager.py
+0	127	scrapy/trunk/scrapy/contrib/cluster/worker/web.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/7/2008, 07 Aug 2008 4:01:25 PM 
+commitMsgStart
+Added a periodic ping to maintain mysql connection active
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40152
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/templates/settings.tmpl
+10	1	scrapy/trunk/scrapy/utils/db.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/8/2008, 08 Aug 2008 4:57:33 PM 
+commitMsgStart
+Added pb-capable crawler. The idea is to improve cluster performance
+adding communication between crawler and master.
+At the momento, a remote stop method to the crawler was added to sustitute
+the previous stop based on kernel signal.
+Further will add monitoring functionality, because the processes are
+very silent, mainly when unavailable report is not issued,
+and offen happens lots of thing that nobody realize on if some
+fortuite events wouldn't happent
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40153
+
+commitMsgEnd
+33	0	scrapy/trunk/scrapy/contrib/pbcluster/crawler/manager.py
+3	3	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+9	4	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/8/2008, 08 Aug 2008 5:16:27 PM 
+commitMsgStart
+fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40154
+
+commitMsgEnd
+3	1	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/9/2008, 09 Aug 2008 2:01:41 AM 
+commitMsgStart
+Cluster crawler fixes
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40155
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/contrib/pbcluster/__init__.py
+0	0	scrapy/trunk/scrapy/contrib/pbcluster/crawler/__init__.py
+8	3	scrapy/trunk/scrapy/contrib/pbcluster/crawler/manager.py
+5	5	scrapy/trunk/scrapy/contrib/pbcluster/worker/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/12/2008, 12 Aug 2008 3:11:15 PM 
+commitMsgStart
+added scheduler request queue limit for spiders (spider middleware)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40156
+
+commitMsgEnd
+35	0	scrapy/trunk/scrapy/contrib/spidermiddleware/limit.py
+1	0	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/12/2008, 12 Aug 2008 3:13:48 PM 
+commitMsgStart
+commented debug lines in last commit
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40157
+
+commitMsgEnd
+5	5	scrapy/trunk/scrapy/contrib/spidermiddleware/limit.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/12/2008, 12 Aug 2008 4:18:03 PM 
+commitMsgStart
+removed a bad character from comment that caused an encoding error
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40159
+
+commitMsgEnd
+1	2	scrapy/trunk/scrapy/contrib/spidermiddleware/limit.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/12/2008, 12 Aug 2008 5:55:54 PM 
+commitMsgStart
+avoid trying to stop a not running task (this bug
+caused stalled processes in production servers)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40160
+
+commitMsgEnd
+5	3	scrapy/trunk/scrapy/core/engine.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/13/2008, 13 Aug 2008 7:49:25 PM 
+commitMsgStart
+- Introduction of class BaseAdaptor
+- Contrib Adaptors
+- location_str moved from decobot to scrapy
+- Added setting DEFAULT_DATA_ENCODING
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40161
+
+commitMsgEnd
+79	0	scrapy/trunk/scrapy/contrib/adaptors.py
+23	6	scrapy/trunk/scrapy/item/models.py
+2	0	scrapy/trunk/scrapy/templates/settings.tmpl
+8	0	scrapy/trunk/scrapy/utils/misc.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/14/2008, 14 Aug 2008 1:13:14 AM 
+commitMsgStart
+import fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40163
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/contrib/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/15/2008, 15 Aug 2008 12:35:09 PM 
+commitMsgStart
+improved explanation comment of the RequestLimitMiddleware
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40168
+
+commitMsgEnd
+3	3	scrapy/trunk/scrapy/contrib/spidermiddleware/limit.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/15/2008, 15 Aug 2008 5:04:36 PM 
+commitMsgStart
+minor fixes
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40170
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/contrib/adaptors.py
+1	1	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/18/2008, 18 Aug 2008 3:18:40 PM 
+commitMsgStart
+- Added generic clean adaptors
+- removed attribute name from adaptor function method (adaptors should
+not nor need to know attribute names)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40171
+
+commitMsgEnd
+63	20	scrapy/trunk/scrapy/contrib/adaptors.py
+6	9	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/18/2008, 18 Aug 2008 3:53:53 PM 
+commitMsgStart
+temporal fix to avoid exceptions before commit in decobot
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40172
+
+commitMsgEnd
+3	0	scrapy/trunk/scrapy/contrib/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/19/2008, 19 Aug 2008 1:42:32 PM 
+commitMsgStart
+removed temporal fix in 171
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40173
+
+commitMsgEnd
+0	3	scrapy/trunk/scrapy/contrib/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/20/2008, 20 Aug 2008 12:52:31 PM 
+commitMsgStart
+fixed a clean code movement error: forget to apply remove tags when
+text does not contains cdata
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40175
+
+commitMsgEnd
+4	2	scrapy/trunk/scrapy/contrib/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/21/2008, 21 Aug 2008 3:07:55 PM 
+commitMsgStart
+moved clean_markup to scrapy.utils.markup
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40176
+
+commitMsgEnd
+8	52	scrapy/trunk/scrapy/contrib/adaptors.py
+55	0	scrapy/trunk/scrapy/utils/markup.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/21/2008, 21 Aug 2008 5:12:32 PM 
+commitMsgStart
+reverted clean_markup code movement
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40177
+
+commitMsgEnd
+1	16	scrapy/trunk/scrapy/contrib/adaptors.py
+0	55	scrapy/trunk/scrapy/utils/markup.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/22/2008, 22 Aug 2008 1:38:29 PM 
+commitMsgStart
+allow to use scrape command without an url
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40178
+
+commitMsgEnd
+19	15	scrapy/trunk/scrapy/command/commands/scrape.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/23/2008, 23 Aug 2008 6:21:47 PM 
+commitMsgStart
+Added a synchronous get method which also updates console user namespace.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40179
+
+commitMsgEnd
+115	62	scrapy/trunk/scrapy/command/commands/scrape.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/27/2008, 27 Aug 2008 1:52:45 PM 
+commitMsgStart
+- moved scrape command to shell
+- fixes
+- get and scrapehelp functions added as ipython magic commands
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40182
+
+commitMsgEnd
+0	148	scrapy/trunk/scrapy/command/commands/scrape.py
+158	0	scrapy/trunk/scrapy/command/commands/shell.py
+5	2	scrapy/trunk/scrapy/contrib/webconsole/livestats.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/27/2008, 27 Aug 2008 5:21:12 PM 
+commitMsgStart
+- avoid to raise an exception when no arg is given to replay command
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40183
+
+commitMsgEnd
+9	8	scrapy/trunk/scrapy/command/commands/replay.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/27/2008, 27 Aug 2008 5:37:32 PM 
+commitMsgStart
+moved some url utils from decobot to scrapy
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40184
+
+commitMsgEnd
+77	1	scrapy/trunk/scrapy/utils/url.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+8/31/2008, 31 Aug 2008 12:25:13 AM 
+commitMsgStart
+Improved Adaptors code
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40185
+
+commitMsgEnd
+73	0	scrapy/trunk/scrapy/item/adaptors.py
+13	16	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/1/2008, 01 Sep 2008 8:06:10 PM 
+commitMsgStart
+- Fixes in adaptors code, after testing
+- added attrs_list param to insertadaptor method
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40195
+
+commitMsgEnd
+21	8	scrapy/trunk/scrapy/item/adaptors.py
+3	14	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 12:38:59 PM 
+commitMsgStart
+updated settings template
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40196
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 2:12:17 PM 
+commitMsgStart
+fix get function (strip and canonicalize url)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40197
+
+commitMsgEnd
+6	4	scrapy/trunk/scrapy/command/commands/shell.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 3:20:16 PM 
+commitMsgStart
+removed canonicalize from get function in shell
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40198
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/command/commands/shell.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 3:41:22 PM 
+commitMsgStart
+removed unused import
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40199
+
+commitMsgEnd
+0	1	scrapy/trunk/scrapy/command/commands/shell.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 5:39:22 PM 
+commitMsgStart
+- assure deferred_degenerate will take an iterable (bug raised when no
+spider middleware is enabled)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40200
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/utils/misc.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/2/2008, 02 Sep 2008 6:52:04 PM 
+commitMsgStart
+more efficient name attribute check in adaptors pipeline
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40201
+
+commitMsgEnd
+13	10	scrapy/trunk/scrapy/item/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/3/2008, 03 Sep 2008 1:53:28 PM 
+commitMsgStart
+- Improved attribute name checks
+- added support to tuple definition of pipeline
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40202
+
+commitMsgEnd
+10	7	scrapy/trunk/scrapy/item/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/4/2008, 04 Sep 2008 6:15:45 PM 
+commitMsgStart
+security fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40205
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/4/2008, 04 Sep 2008 7:11:53 PM 
+commitMsgStart
+- removed contrib/adaptors.py
+- display adaptor name when an exception raises inside the adaptor
+pipeline
+- add debug parameter to item attribute method to display input/output
+of each adaptor
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40206
+
+commitMsgEnd
+0	67	scrapy/trunk/scrapy/contrib/adaptors.py
+15	2	scrapy/trunk/scrapy/item/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/4/2008, 04 Sep 2008 7:33:36 PM 
+commitMsgStart
+second security fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40207
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/4/2008, 04 Sep 2008 7:50:25 PM 
+commitMsgStart
+- added negative attribute name match
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40208
+
+commitMsgEnd
+12	9	scrapy/trunk/scrapy/item/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/5/2008, 05 Sep 2008 9:51:53 PM 
+commitMsgStart
+adaptors with generic matching function
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40210
+
+commitMsgEnd
+15	35	scrapy/trunk/scrapy/item/adaptors.py
+2	2	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/6/2008, 06 Sep 2008 5:03:47 PM 
+commitMsgStart
+Removed PRIORITY constants, added DEFAULT_PRIORITY setting
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40211
+
+commitMsgEnd
+2	9	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+4	9	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+4	9	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/8/2008, 08 Sep 2008 12:06:53 PM 
+commitMsgStart
+minor code fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40212
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/9/2008, 09 Sep 2008 3:05:42 PM 
+commitMsgStart
+Added getd command, similar to get but first decompress the response.
+Based on decompressor tool.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40218
+
+commitMsgEnd
+14	5	scrapy/trunk/scrapy/command/commands/shell.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/10/2008, 10 Sep 2008 2:06:28 PM 
+commitMsgStart
+- AdaptorPipe compilation feature to resolve the problem of efficience
+and mantain the simplicity of the actual pipeline definition approach (for
+people that prefer to bore with lots of lines to define and edit a
+pipeline, they can edit directly the compiled version)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40220
+
+commitMsgEnd
+36	18	scrapy/trunk/scrapy/item/adaptors.py
+3	7	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/11/2008, 11 Sep 2008 3:33:35 PM 
+commitMsgStart
+- leave in adaptors.py only the elemental adaptors pipeline code.
+- moved to contrib/adaptorpipeline the advanced adaptors pipeline code.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40225
+
+commitMsgEnd
+85	0	scrapy/trunk/scrapy/contrib/adaptorpipeline.py
+8	84	scrapy/trunk/scrapy/item/adaptors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/12/2008, 12 Sep 2008 8:48:48 PM 
+commitMsgStart
+- Support for not output in cluster status
+- schedule option by default does not have output
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40228
+
+commitMsgEnd
+10	7	scrapy/trunk/scrapy/contrib/pbcluster/master/manager.py
+13	11	scrapy/trunk/scrapy/contrib/pbcluster/master/web.py
+1	1	scrapy/trunk/scrapy/contrib/pbcluster/master/ws_api.txt
+7	4	scrapy/trunk/scrapy/contrib/pbcluster/tools/scrapy-cluster-ctl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/15/2008, 15 Sep 2008 1:23:10 AM 
+commitMsgStart
+removed reference to guid (decobot specific) attribute in item
+pipeline logs
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40230
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/item/pipeline.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/18/2008, 18 Sep 2008 8:11:30 PM 
+commitMsgStart
+allow to set download delay as a scrapy setting
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40255
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/core/downloader/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/18/2008, 18 Sep 2008 8:13:31 PM 
+commitMsgStart
+removed unneeded None
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40256
+
+commitMsgEnd
+1	2	scrapy/trunk/scrapy/core/downloader/handlers.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/18/2008, 18 Sep 2008 8:19:26 PM 
+commitMsgStart
+ouch! reverted a failed commit and now yes, removed an unneeded None
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40257
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/core/downloader/handlers.py
+1	1	scrapy/trunk/scrapy/core/downloader/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/19/2008, 19 Sep 2008 12:50:19 PM 
+commitMsgStart
+reverted changeset 254
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40258
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/core/downloader/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/25/2008, 25 Sep 2008 2:14:02 AM 
+commitMsgStart
+allow to override item class adaptor in constructor
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40277
+
+commitMsgEnd
+8	1	scrapy/trunk/scrapy/item/models.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/30/2008, 30 Sep 2008 1:44:11 PM 
+commitMsgStart
+- copied original request to response.request in get_url method
+- deleted unused comment
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40284
+
+commitMsgEnd
+1	11	scrapy/trunk/scrapy/command/commands/shell.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/30/2008, 30 Sep 2008 2:15:23 PM 
+commitMsgStart
+safe_url_string should not escape unreserved marks (see RFC 2396, sec
+2.3)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40285
+
+commitMsgEnd
+2	1	scrapy/trunk/scrapy/utils/url.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/30/2008, 30 Sep 2008 4:19:20 PM 
+commitMsgStart
+small fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40286
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/downloadermiddleware/redirect.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/30/2008, 30 Sep 2008 4:56:12 PM 
+commitMsgStart
+better management of some redirection loops.
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40287
+
+commitMsgEnd
+9	1	scrapy/trunk/scrapy/contrib/downloadermiddleware/redirect.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+9/30/2008, 30 Sep 2008 7:24:24 PM 
+commitMsgStart
+added test for r284
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40288
+
+commitMsgEnd
+2	0	scrapy/trunk/scrapy/tests/test_utils_url.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+10/2/2008, 02 Oct 2008 7:22:34 PM 
+commitMsgStart
+allow to directly specify which domain corresponds to a given request
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40290
+
+commitMsgEnd
+33	7	scrapy/trunk/scrapy/core/manager.py
+4	2	scrapy/trunk/scrapy/http/request.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+10/2/2008, 02 Oct 2008 7:59:51 PM 
+commitMsgStart
+added support for global DOWNLOAD_DELAY setting
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40291
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/core/downloader/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+10/2/2008, 02 Oct 2008 8:39:36 PM 
+commitMsgStart
+added DOWNLOAD_DELAY comment in settings template
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40292
+
+commitMsgEnd
+5	0	scrapy/trunk/scrapy/templates/settings.tmpl
+
+NEW_ENTRY
+olveyra 
+none@none 
+10/2/2008, 02 Oct 2008 10:41:51 PM 
+commitMsgStart
+reverted an experimental code that should have been commited
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40293
+
+commitMsgEnd
+4	27	scrapy/trunk/scrapy/core/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+10/9/2008, 09 Oct 2008 6:59:32 PM 
+commitMsgStart
+removed rulengine and simpage code
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40314
+
+commitMsgEnd
+0	91	scrapy/trunk/scrapy/contrib/downloadermiddleware/simpages/__init__.py
+0	19	scrapy/trunk/scrapy/contrib/downloadermiddleware/simpages/metrics/__init__.py
+0	39	scrapy/trunk/scrapy/contrib/downloadermiddleware/simpages/metrics/histogram.py
+0	39	scrapy/trunk/scrapy/contrib/downloadermiddleware/simpages/metrics/tagdepth.py
+0	74	scrapy/trunk/scrapy/contrib/rulengine/__init__.py
+0	9	scrapy/trunk/scrapy/contrib/rulengine/exceptions.py
+0	52	scrapy/trunk/scrapy/contrib/rulengine/pipeline.py
+0	59	scrapy/trunk/scrapy/contrib/rulengine/responseWrapper.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+12/30/2008, 30 Dec 2008 1:04:06 PM 
+commitMsgStart
+Added doc line in RegexLinkExtractor for the case when no allow/deny argument is given
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40584
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/link/extractors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+12/30/2008, 30 Dec 2008 1:49:00 PM 
+commitMsgStart
+Allow to load a default spider when no spider was found for a given url. Also a generic spider
+was added in contrib/spiders
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40587
+
+commitMsgEnd
+3	0	scrapy/trunk/scrapy/conf/project_template/scrapy_settings.py
+20	0	scrapy/trunk/scrapy/contrib/spiders/generic.py
+22	11	scrapy/trunk/scrapy/spider/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+12/30/2008, 30 Dec 2008 2:51:37 PM 
+commitMsgStart
+fix to commit (r586)
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40588
+
+commitMsgEnd
+2	2	scrapy/trunk/scrapy/spider/manager.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+12/30/2008, 30 Dec 2008 7:38:15 PM 
+commitMsgStart
+doc string fix
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40590
+
+commitMsgEnd
+1	0	scrapy/trunk/scrapy/link/extractors.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+1/5/2009, 05 Jan 2009 6:11:48 PM 
+commitMsgStart
+added DEFAULT_SPIDER setting help
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40650
+
+commitMsgEnd
+19	7	scrapy/trunk/docs/ref/settings.rst
+
+NEW_ENTRY
+olveyra 
+none@none 
+1/6/2009, 06 Jan 2009 7:43:58 PM 
+commitMsgStart
+fix to revision 660
+
+--HG--
+extra : convert_revision : svn%3Ab85faa78-f9eb-468e-a121-7cced6da292c%40663
+
+commitMsgEnd
+1	1	scrapy/trunk/scrapy/contrib/spiders/crawl.py
+
+NEW_ENTRY
+olveyra 
+none@none 
+6/11/2010, 11 Jun 2010 1:09:56 PM 
+commitMsgStart
+Populate annotation metadata with data not used by IBL extractor.
+
+commitMsgEnd
+1	1	scrapy/contrib/ibl/extraction/__init__.py
+3	1	scrapy/contrib/ibl/extraction/pageobjects.py
+12	9	scrapy/contrib/ibl/extraction/pageparsing.py
+-	-	scrapy/tests/test_contrib_ibl/samples_pageparsing.json.gz
+
+NEW_ENTRY
+olveyra 
+olveyra@dev.scrapinghub.com 
+2/27/2012, 27 Feb 2012 6:03:48 PM 
+commitMsgStart
+allow to work with multiple cookie jars on the same spider
+
+commitMsgEnd
+4	8	scrapy/contrib/downloadermiddleware/cookies.py
+22	1	scrapy/tests/test_downloadermiddleware_cookies.py
+
+NEW_ENTRY
+olveyra 
+olveyra@dev.scrapinghub.com 
+4/2/2012, 02 Apr 2012 8:34:57 PM 
+commitMsgStart
+dont discard slot when empty, just save in another dict in order to recycle if needed again.
+
+This fix avoids to continuosly create new slot under certain cases, bug that prevents download_delay and max_concurrent_requests to work properly.
+
+The problem arises when the slot for a given domain becomes empty, but further requests for that domain werent still created by the spider. This is typical when spider creates requests one by one, or it makes requests to multiple domains and one or more of them are created in a rate enough slow that makes slot to be empty each time the response is fetched.
+
+The effect is that a new slot is created for each request under such conditions, and so the download_delay and max_concurrent_requests are not taking effect (because in order to apply, depends on an already existing slot for that domain).
+
+commitMsgEnd
+10	7	scrapy/core/downloader/__init__.py
+
+NEW_ENTRY
+olveyra 
+olveyra@dev.scrapinghub.com 
+4/3/2012, 03 Apr 2012 11:14:00 PM 
+commitMsgStart
+Fix autothrottle in order to modify also inactive downloader slots, so cases fixed by inactive slots patch will work ok also when using autothrottle
+
+commitMsgEnd
+1	1	scrapy/contrib/throttle.py
+
+NEW_ENTRY
+olveyra 
+olveyra@dev1.scrapinghub.com 
+8/13/2013, 13 Aug 2013 1:48:28 PM 
+commitMsgStart
+added a python native classes item exporter
+
+commitMsgEnd
+23	2	scrapy/contrib/exporter/__init__.py
+35	2	scrapy/tests/test_contrib_exporter.py
+
+NEW_ENTRY
+olveyra 
+olveyra@oridev.scrapinghub.com 
+11/19/2013, 19 Nov 2013 4:52:24 AM 
+commitMsgStart
+telnet client: fix unexisting reference to engine.slots
+
+commitMsgEnd
+2	5	scrapy/telnet.py
