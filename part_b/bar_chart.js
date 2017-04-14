@@ -40,6 +40,14 @@ function display(names, since, until) {
 			}
 		});
 
+		if (jQuery.isEmptyObject(data)) {
+			
+			alert("Looks like the names are invalid, please check and try again.");
+			$("#chartDisplay").slideUp();
+			$("#commitDisplay").slideUp("slow");
+			return;
+		}
+
 		data.forEach(function(author){
 			//console.log(author);
 			keys.push(author[0].name);
@@ -97,11 +105,6 @@ function display(names, since, until) {
 
 		console.log(dataSet);
 		//console.log(keys);
-
-		if (jQuery.isEmptyObject(dataSet)) {
-			alert("Looks like the names are invalid, please check and try again.");
-			return;
-		}
 
 		minDate.subtract(1, "months");
 		minDate.startOf('day');   
