@@ -2,8 +2,8 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   width: 800px;
-  height: 550px;
-  padding-top: 20px;
+  height: 600px;
+  top: -40px;
   position: relative;
   float: left;
 }
@@ -12,7 +12,7 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   width: 200px;
-  height: 550px;
+  height: 600px;
   padding-top: 10px;
   position: relative;
   float: left;	
