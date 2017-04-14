@@ -12,6 +12,7 @@ body {
   font-family: "Lucida Console";
   background: #212121;
   box-shadow: 0 0 5px #999999;
+  border-radius: 5px;
   color: #fff;
   display: none;
   font-size: 12px;
