@@ -129,6 +129,11 @@ function display(names, since, until) {
 
 	  	//console.log("Interval: " + interval);
 	  	var bandwidth = (width-margin*2)/interval;
+
+	  	if (keys.length == 1) {
+	  		bandwidth /= 2;
+	  	}
+
 	  	x1.domain(keys).rangeRoundBands([0, bandwidth], 0, 0.2*keys.length);	
 
 	  	var y = d3.scale.linear()
