@@ -90,6 +90,19 @@ function midAngle(d){
   return d.startAngle + (d.endAngle - d.startAngle) / 2;
 }
 
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
 var color = d3.scale.ordinal()
   .range(d3.scale.category20().range());
 
@@ -97,9 +110,18 @@ var tooltip = d3.select("#chart")
     .append("div")
     .attr("class", "tooltipStyle")
 
+var urlVar = getUrlVars()
+var url = "http://kfwong.com:3000/api/repos/" + 
+          urlVar["repoOwner"] + "/" +
+          urlVar["repoName"] + "/" +
+          "1a"
+
 var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1a"
 
 d3.csv(url, function(data) {
+  d3.select("#loading")
+    .text("")
+
   data.forEach(function(d) {
     d.commits = +d.commits
     d.additions = +d.additions
