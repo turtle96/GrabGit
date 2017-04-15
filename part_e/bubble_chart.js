@@ -26,19 +26,23 @@
   tooltip.append('div')
     .attr('class', 'value');
   
-  var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e";
   var filename = "locStatsCSV.csv";
+  var urlVar = getUrlVars()
+  var url = "http://kfwong.com:3000/api/repos/" + 
+            urlVar["repoOwner"] + "/" +
+            urlVar["repoName"] + "/" +
+            "1e"
 
   d3.csv(url, function(error, data){
 
     //convert numerical values from strings to numbers
     data = data.map(function(d){ d.value = +d.value; return d; });
     
-    $("#first").text(data[0].name);
-    $("#second").text(data[1].name);
-    $("#third").text(data[2].name);
-    $("#fourth").text(data[3].name);
-    $("#fifth").text(data[4].name);
+    $("#first").text(data[0] == undefined? 'nil' : data[0].name);
+    $("#second").text(data[1] == undefined? 'nil' : data[1].name);
+    $("#third").text(data[2] == undefined? 'nil' : data[2].name);
+    $("#fourth").text(data[3] == undefined? 'nil' : data[3].name);
+    $("#fifth").text(data[4] == undefined? 'nil' : data[4].name);
 
     //bubbles needs very specific format, convert data to this.
     var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });
@@ -71,3 +75,16 @@
   });
 
 })(window.d3);
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
