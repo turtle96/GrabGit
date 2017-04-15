@@ -1,4 +1,6 @@
 #loading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 50px;
   position: relative;
   top: 100px;
 }
@@ -8,8 +10,6 @@
 }
 
 #chart {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 50px;
   text-align: center;
   width: 800px;
   height: 600px;
