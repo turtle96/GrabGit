@@ -116,8 +116,6 @@ var url = "http://kfwong.com:3000/api/repos/" +
           urlVar["repoName"] + "/" +
           "1a"
 
-var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1a"
-
 d3.csv(url, function(data) {
   d3.select("#loading")
     .text("")
