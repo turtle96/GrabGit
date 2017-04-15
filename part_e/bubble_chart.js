@@ -26,8 +26,12 @@
   tooltip.append('div')
     .attr('class', 'value');
   
-  var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1e";
   var filename = "locStatsCSV.csv";
+  var urlVar = getUrlVars()
+  var url = "http://kfwong.com:3000/api/repos/" + 
+            urlVar["repoOwner"] + "/" +
+            urlVar["repoName"] + "/" +
+            "1e"
 
   d3.csv(url, function(error, data){
 
@@ -71,3 +75,16 @@
   });
 
 })(window.d3);
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
