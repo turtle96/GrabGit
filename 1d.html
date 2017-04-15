@@ -83,11 +83,11 @@
 							if($(this).hasClass('highlighted')){
 								$('.line').removeClass('highlighted');
 
-								$('#commit-history').html('<div class="item"><div class="content"><div class="description">Nothing is selected.</div></div></div>');
+								$('#last-committers').html('<div class="item"><div class="content"><div class="description">Nothing is selected.</div></div></div>');
 							}else{
 								$('.line').removeClass('highlighted');
 								$('.number'+_currentLineNumber).toggleClass('highlighted');
-								$('#commit-history').html('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+$('.number'+_currentLineNumber).attr('data-author')+'</a><div class="description">'+hashShort+'<br/>'+$('.number'+_currentLineNumber).attr('data-summary')+'</div></div></div>');
+								$('#last-committers').html('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+$('.number'+_currentLineNumber).attr('data-author')+'</a><div class="description">'+hashShort+'<br/>'+$('.number'+_currentLineNumber).attr('data-summary')+'</div></div></div>');
 							}
 						});
 
@@ -125,9 +125,10 @@
 				let lineRange = $(this).val().split('-');
 				let lineStart = lineRange[0];
 				let lineEnd = lineRange[1];
+				console.log(lineStart+":"+lineEnd);
 
 				$('.line').removeClass('highlighted');
-				$('#commit-history').empty();
+				$('#last-committers').empty();
 
 				for(let i=lineStart; i<=lineEnd; i++){
 					$('.number'+i).toggleClass('highlighted');
@@ -135,8 +136,8 @@
 					let hash = $('.number'+i).attr('data-hash');
 					let author = $('.number'+i).attr('data-author');
 
-					if($('#commit-history').find('.'+hash).length == 0){
-						$('#commit-history').append('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+author+'</a><div class="description">'+hash.substring(0,5)+'<br/>'+$('.number'+i).attr('data-summary')+'</div></div></div>');
+					if($('#last-committers').find('.'+hash).length == 0){
+						$('#last-committers').append('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+author+'</a><div class="description">'+hash.substring(0,5)+'<br/>'+$('.number'+i).attr('data-summary')+'</div></div></div>');
 					}
 				}
 			});
@@ -166,7 +167,7 @@
       	<pre class="prettyprint brush: py;"></pre>
       </div>
       <div class="four wide column">
-      	<h2 class="ui dividing header">Commit History</h2>
+      	<h2 class="ui dividing header">Last Committers</h2>
 		<form class="ui form" onsubmit="return false;">
 		  <div class="field">
 		    <label>Line Range</label>
@@ -174,7 +175,7 @@
 		  </div>
 		</form>
 		<div class="ui divider"></div>
-      	<div id="commit-history" class="ui relaxed divided list">
+      	<div id="last-committers" class="ui relaxed divided list">
 		  <div class="item">
 		    <div class="content">
 		      <div class="description">Nothing is selected.</div>
