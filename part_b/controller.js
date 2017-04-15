@@ -32,7 +32,7 @@ function submitForm() {
 	displayChart(names, since, until);
 }
 
-function displayChart(names) {
+function displayChart(names, since, until) {
 	var flag = false;
 	names.forEach(function(name) {
 		if (name) {
@@ -51,7 +51,7 @@ function displayChart(names) {
 	$("#commitContainer").find("div").remove(".panel");	//removes only the panels for commits
 
 	$.getScript("bar_chart.js", function(){
-		display(names);
+		display(names, since, until);
 		$("#helpHeader").show();
 		$("#commitDisplay").slideDown("slow");
 		$("#chartDisplay").slideDown("slow");

@@ -13,7 +13,14 @@ function display(names, since, until) {
 			.attr("height", height)
 			.attr("width", width);
 
-	var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy/1bc";
+	var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy";
+	console.log(since + " " + until);
+	if (since!=undefined && until!=undefined) {
+		url += "/" + since + "/" + until;
+	}
+	url += "/1bc";
+	console.log(url);
+
 	var dataJsonFilePath = "data/data.json";	//for testing
 
 	d3.json(url, function(error, data) {
@@ -25,6 +32,14 @@ function display(names, since, until) {
 		var minDate = null, maxDate = null;
 		
 		//console.log(data);
+
+		if (jQuery.isEmptyObject(data)) {
+			
+			alert("Looks like the names or dates are invalid, please check and try again.");
+			$("#chartDisplay").slideUp();
+			$("#commitDisplay").slideUp("slow");
+			return;
+		}
 
 		data = data.filter(function(author) {
 			var result = false;
@@ -48,9 +63,13 @@ function display(names, since, until) {
 			return;
 		}
 
+		console.log(data);
+
 		data.forEach(function(author){
 			//console.log(author);
-			keys.push(author[0].name);
+			if (!keys.includes(author[0].name)) {
+				keys.push(author[0].name);
+			}
 
 			author.forEach(function(d){
 				//console.log(d);
@@ -103,8 +122,8 @@ function display(names, since, until) {
 			deleted = 0;
 		});
 
-		//console.log(dataSet);
-		//console.log(keys);
+		console.log(dataSet);
+		console.log(keys);
 
 		minDate.subtract(1, "months");
 		minDate.startOf('day');   
