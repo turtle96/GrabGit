@@ -9,39 +9,60 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#submitBtn').on('click', function(){
+          var _repoUrl = $('#repoUrl').val();
+          $.ajax({
+            method: "POST",
+            url: "http://kfwong.com:3000/api/repos/register",
+            dataType: "json",
+            data: {
+              repoUrl: _repoUrl
+            }
+          }).done(function(data){
+              if(data.message==="ok" || data.message==="already exists"){
+                $('#part_a').attr('href', 'part_a/contributions.html?repoOwner='+data.repoOwner+'&repoName='+data.repoName);
+                $('#part_bc').attr('href', 'part_b/index.html?repoOwner='+data.repoOwner+'&repoName='+data.repoName);
+                $('#part_d').attr('href', 'part_d/1d.html?repoOwner='+data.repoOwner+'&repoName='+data.repoName);
+                $('#part_e').attr('href', 'part_e/partE.html?repoOwner='+data.repoOwner+'&repoName='+data.repoName);
+                $('#features').show();
+              }else{
+                console.log(data.message);
+              }
+          });
+        });
+    });
+    </script>
 
   </head>
   <body> 
     <div class="row" align="center">
-      <img id="logo" src="./img/icon.png" width="250">
+      <img id="logo" src="img/icon.png" width="250">
       <h1 align="center">GrabGit</h1>
     </div>
 
     <div id="repoFormContainer" class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        <form class="vertical-form">
           <div class="form-group">
-            <input type="text" class="form-control" name="repoName" 
-              placeholder="Enter repository's url here">    
+            <input id="repoUrl" type="text" class="form-control" name="repoUrl" 
+              placeholder="https://github.com/repoOwner/repoName">    
           </div>
           <div class="form-group" align="center">
             <button id="submitBtn" type="button" class="btn btn-default">Submit</button>
           </div>
-        </form>
       </div>
     </div>
 
-    <div id="features" align="center" class="row"> 
+    <div id="features" align="center" class="row" style='display: hidden;'> 
 
       <div class="col-xs-6 col-xs-offset-3">
         <h1>Features</h1> 
         <div class="list-group">
-          <a href="./part_a/contributions.html" class="list-group-item">Contributions for All Team Members</a>
-          <a href="./part_b" class="list-group-item">View Commit History by Author Name</a>
-          <a href="./1d.html" class="list-group-item">View Commit History by File</a>
-          <a href="./part_e/partE.html" class="list-group-item">
-            Lines of Code Written by Each Team Member
-          </a>
+          <a id="part_a" href="#" class="list-group-item">Contributions for All Team Members</a>
+          <a id="part_bc" href="#" class="list-group-item">View Commit History by Author Name</a>
+          <a id="part_d" href="#" class="list-group-item">View Commit History by File</a>
+          <a id="part_e" href="#" class="list-group-item">Lines of Code Written by Each Team Member</a>
         </div>
       </div>
     </div>

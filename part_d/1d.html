@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GrabGit</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" rel="stylesheet" type="text/css" />
+		<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css" rel="stylesheet" type="text/css" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" type="text/css" />
+		
+		<style>
+			body{
+				padding-top: 20px;
+			}
+			input[type=checkbox]{
+			-ms-transform: scale(0.75); /* IE */
+			-moz-transform: scale(0.75); /* FF */
+			-webkit-transform: scale(0.75); /* Safari and Chrome */
+			-o-transform: scale(0.75); /* Opera */
+			padding: 0px;
+			margin:0px;
+			vertical-align: text-bottom;
+			}
+			.syntaxhighlighter table td.gutter .line{
+				text-align: left !important;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+		<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPython.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+		var repoOwner = getUrlVars()['repoOwner'];
+		var repoName = getUrlVars()['repoName'];
+		$(document).ready(function(){
+			$.get('http://kfwong.com:3000/api/repos/'+repoOwner+'/'+repoName+'/files', function(data){
+				var lines = data.split('\n');
+				lines.forEach(function(line){
+					$('#filelist').append('<option value="'+line+'">'+line+'</option>');
+				});
+				$('select.dropdown').dropdown({
+					onChange: function(value, text, $selectedItem) {
+						$('#prettyprint-container').empty();
+						$('#prettyprint-container').append('<pre class="prettyprint brush: py;"></pre>');
+						loadfile(value);
+						bindEvent();
+					}
+				});
+			});
+		});
+		function loadfile(file){
+			$.get('http://kfwong.com:3000/api/repos/'+repoOwner+'/'+repoName+'/1d?file='+file, function(data){
+				var lines = data.split('\n');
+				var hashPattern =  new RegExp('^[0-9a-f]{5,40}');
+				var authorPattern = new RegExp('^author (.*)');
+				var summaryPattern = new RegExp('^summary (.*)');
+				// filter out unnecessary information
+				lines = lines.filter(function(line){
+					return !line.startsWith('author-mail') &&
+						!line.startsWith('author-time') &&
+						!line.startsWith('author-tz') &&
+						!line.startsWith('committer') &&
+						!line.startsWith('committer-mail') &&
+						!line.startsWith('committer-time') &&
+						!line.startsWith('committer-tz') &&
+						!line.startsWith('filename') &&
+						!line.startsWith('previous');
+				})
+				// extract the source codes
+				var code = lines.filter(function(line){
+					return !hashPattern.test(line) &&
+						!authorPattern.test(line) &&
+						!summaryPattern.test(line);
+				}).join('\n').replace('<', '&lt');
+				$('.prettyprint').text(code);
+				SyntaxHighlighter.highlight();
+				// setup extra info per line
+				var currentLineNumber = -1;
+				lines.forEach(function(line){
+					if(hashPattern.test(line)){
+						var _line = line.split(' ');
+						var hash = _line[0];
+						var hashShort = hash.substring(0,5);
+						currentLineNumber = _line[2];
+						$('.number'+currentLineNumber).attr('data-hash', hash);
+						// toggle highlighted line (one line at a time)
+						$('.number'+currentLineNumber).on('click', function(){
+							let _currentLineNumber = _line[2];
+							if($(this).hasClass('highlighted')){
+								$('.line').removeClass('highlighted');
+								$('#last-committers').html('<div class="item"><div class="content"><div class="description">Nothing is selected.</div></div></div>');
+							}else{
+								$('.line').removeClass('highlighted');
+								$('.number'+_currentLineNumber).toggleClass('highlighted');
+								$('#last-committers').html('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+$('.number'+_currentLineNumber).attr('data-author')+'</a><div class="description">'+hashShort+'<br/>'+$('.number'+_currentLineNumber).attr('data-summary')+'</div></div></div>');
+							}
+						});
+						// popover hash
+						$('.gutter .number'+currentLineNumber).html('<span class="hash hint--right" style="text-align:right;cursor:pointer;">'+hashShort+'&#9;</span>'+currentLineNumber);
+						// toggle for line
+						$('.number'+currentLineNumber).on('mouseover', function(){
+							let _currentLineNumber = _line[2];
+							$('.number'+_currentLineNumber).css('color', '#6CE26C');
+						});
+						$('.number'+currentLineNumber).on('mouseout', function(){
+							let _currentLineNumber = _line[2];
+							$('.number'+_currentLineNumber).css('color', '#afafaf');
+						});
+					}else if(authorPattern.test(line)){
+						var author = authorPattern.exec(line)[1];
+						$('.number'+currentLineNumber).attr('data-author', author);
+						$('.gutter .number'+currentLineNumber +' .hash').attr('data-hint', author);
+					}else if(summaryPattern.test(line)){
+						var summary = summaryPattern.exec(line)[1];
+						$('.number'+currentLineNumber).attr('data-summary', summary);
+						var dataHint = $('.gutter .number'+currentLineNumber + ' .hash');
+						dataHint.attr('data-hint', dataHint.attr('data-hint') + ": " + summary);
+					}
+				});
+			});
+		}
+		function bindEvent(){
+			$('#line-range').on('keyup', function(){
+				let lineRange = $(this).val().split('-');
+				let lineStart = parseInt(lineRange[0]);
+				let lineEnd = parseInt(lineRange[1]);
+				console.log(lineStart+":"+lineEnd);
+				$('.line').removeClass('highlighted');
+				$('#last-committers').empty();
+				for(let i=lineStart; i<=lineEnd; i++){
+					$('.number'+i).toggleClass('highlighted');
+					let hash = $('.number'+i).attr('data-hash');
+					let author = $('.number'+i).attr('data-author');
+					if($('#last-committers').find('.'+hash).length == 0){
+						$('#last-committers').append('<div class="item '+hash+'"><i class="large user middle aligned icon"></i><div class="content"><a class="header">'+author+'</a><div class="description">'+hash.substring(0,5)+'<br/>'+$('.number'+i).attr('data-summary')+'</div></div></div>');
+					}
+				}
+			});
+		}
+		// Read a page's GET URL variables and return them as an associative array.
+		function getUrlVars()
+		{
+		    var vars = [], hash;
+		    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		    for(var i = 0; i < hashes.length; i++)
+		    {
+		        hash = hashes[i].split('=');
+		        vars.push(hash[0]);
+		        vars[hash[0]] = hash[1];
+		    }
+		    return vars;
+		}
+	</script>
+</head>
+<body>
+	<div class="ui container">
+		<h1 class="ui dividing header">GrabGit</h1>
+		<p>GIT-Guard should show the commit history of all the users, for a specific file in the repo. It should also provide an option to select a code chunk (specific line numbers) and show the history of edits on those lines.</p>
+		<div class="ui form">
+			<div class="field">
+				<label>List of files in this repository</label>
+				<select id="filelist" class="ui search dropdown">
+					<option value="">Select or type to search for files</option>
+				</select>
+			</div>
+		</div>
+		<div class="ui divider"></div>
+		<div class="ui two column grid">
+			<div id="prettyprint-container" class="twelve wide column">
+				<pre class="prettyprint brush: py;"></pre>
+			</div>
+			<div class="four wide column">
+				<h2 class="ui dividing header">Last Committers</h2>
+				<form class="ui form" onsubmit="return false;">
+					<div class="field">
+						<label>Line Range</label>
+						<input id="line-range" name="lineRange" placeholder="e.g: 11-30 (Optional)" type="text">
+					</div>
+				</form>
+				<div class="ui divider"></div>
+				<div id="last-committers" class="ui relaxed divided list">
+					<div class="item">
+						<div class="content">
+							<div class="description">Nothing is selected.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
