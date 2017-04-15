@@ -38,11 +38,11 @@
     //convert numerical values from strings to numbers
     data = data.map(function(d){ d.value = +d.value; return d; });
     
-    $("#first").text(data[0].name);
-    $("#second").text(data[1].name);
-    $("#third").text(data[2].name);
-    $("#fourth").text(data[3].name);
-    $("#fifth").text(data[4].name);
+    $("#first").text(data[0] == undefined? 'nil' : data[0].name);
+    $("#second").text(data[1] == undefined? 'nil' : data[1].name);
+    $("#third").text(data[2] == undefined? 'nil' : data[2].name);
+    $("#fourth").text(data[3] == undefined? 'nil' : data[3].name);
+    $("#fifth").text(data[4] == undefined? 'nil' : data[4].name);
 
     //bubbles needs very specific format, convert data to this.
     var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });
