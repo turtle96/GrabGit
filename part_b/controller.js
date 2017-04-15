@@ -1,3 +1,6 @@
+var repo = getUrlVars();
+console.log(repo);
+
 $(document).ready(function(){
 
 	$('#submitBtn').click(function(){
@@ -10,6 +13,19 @@ $(document).ready(function(){
 	    }
 	});
 });
+
+function getUrlVars()
+		{
+		    var vars = [], hash;
+		    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		    for(var i = 0; i < hashes.length; i++)
+		    {
+		        hash = hashes[i].split('=');
+		        vars.push(hash[0]);
+		        vars[hash[0]] = hash[1];
+		    }
+		    return vars;
+		}
 
 function submitForm() {
 	var form = $('form').serializeArray();
@@ -29,10 +45,10 @@ function submitForm() {
 
 	console.log(since + " " + until);
 
-	displayChart(names, since, until);
+	displayChart(names, since, until, repo);
 }
 
-function displayChart(names, since, until) {
+function displayChart(names, since, until, repo) {
 	var flag = false;
 	names.forEach(function(name) {
 		if (name) {
@@ -51,7 +67,7 @@ function displayChart(names, since, until) {
 	$("#commitContainer").find("div").remove(".panel");	//removes only the panels for commits
 
 	$.getScript("bar_chart.js", function(){
-		display(names, since, until);
+		display(names, since, until, repo);
 		$("#helpHeader").show();
 		$("#commitDisplay").slideDown("slow");
 		$("#chartDisplay").slideDown("slow");

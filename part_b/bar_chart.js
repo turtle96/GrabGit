@@ -1,4 +1,4 @@
-function display(names, since, until) {	
+function display(names, since, until, repo) {	
 	var data;
 
 	var height = 500;
@@ -13,7 +13,7 @@ function display(names, since, until) {
 			.attr("height", height)
 			.attr("width", width);
 
-	var url = "http://kfwong.com:3000/api/repos/tungnk1993/scrapy";
+	var url = "http://kfwong.com:3000/api/repos/" + repo.repoOwner + "/" + repo.repoName;
 	console.log(since + " " + until);
 	if (since!=undefined && until!=undefined) {
 		url += "/" + since + "/" + until;
@@ -31,7 +31,7 @@ function display(names, since, until) {
 
 		var minDate = null, maxDate = null;
 		
-		//console.log(data);
+		console.log(data);
 
 		if (jQuery.isEmptyObject(data)) {
 			
